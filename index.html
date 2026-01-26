@@ -4,42 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ACTUAL GENERAL INTELLIGENCE</title>
-
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
   <meta property="og:title" content="ACTUAL GENERAL INTELLIGENCE">
   <meta property="og:description" content="Scorpion Venom → Neuropathic Pain. Coherence: 0.810. 3.8GB deterministic semantic engine.">
   <meta property="og:image" content="https://actualgeneralintelligence.com/og-image.png">
   <meta property="og:url" content="https://actualgeneralintelligence.com">
   <meta property="og:type" content="website">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ACTUAL GENERAL INTELLIGENCE">
   <meta name="twitter:description" content="Scorpion Venom → Neuropathic Pain. Coherence: 0.810.">
   <meta name="twitter:image" content="https://actualgeneralintelligence.com/og-image.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
-
   <style>
     * { box-sizing:border-box; margin:0; padding:0; }
-
-    html, body {
-      height:100%;
-      width:100%;
-      background:#000;
+    html, body { 
+      height:100%; 
+      width:100%; 
+      background:#000; 
       overflow:hidden;
     }
 
     #bg {
       position:fixed;
       inset:0;
-      background-color:#000;
+      background-color: #000;
       background-position:center;
       background-size:contain;
       background-repeat:no-repeat;
-      background-attachment:fixed;
+      background-attachment: fixed;
     }
 
     .title {
@@ -50,14 +44,13 @@
       text-align:center;
       z-index:50;
     }
-
     .title h1 {
-      font-family:Inter, -apple-system, sans-serif;
+      font-family: Inter, -apple-system, sans-serif;
       font-weight:900;
       letter-spacing:-2.5px;
       text-transform:uppercase;
       line-height:0.88;
-      font-size:clamp(30px, 4.8vw, 76px);
+      font-size: clamp(30px, 4.8vw, 76px);
       color:#ff0000;
     }
 
@@ -70,7 +63,7 @@
     }
 
     .score {
-      font-family:Inter, -apple-system, sans-serif;
+      font-family: Inter, -apple-system, sans-serif;
       font-weight:900;
       font-size:clamp(80px, 15vw, 180px);
       line-height:0.82;
@@ -78,17 +71,19 @@
       color:#ff0000;
     }
 
+    /* LEFT SPECS - ABOVE CASE STUDY */
     .specs-left {
       position:fixed;
       left:clamp(18px, 2.8vw, 32px);
       bottom:clamp(200px, 30vh, 280px);
       z-index:50;
-      font-family:'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
       letter-spacing:0.25px;
       color:rgba(255,255,255,0.78);
+      text-align:left;
       max-width:clamp(170px, 21vw, 250px);
     }
 
@@ -101,12 +96,13 @@
       text-transform:uppercase;
     }
 
+    /* RIGHT ATTRIBUTES - ABOVE INDUSTRIES */
     .specs-right {
       position:fixed;
       right:clamp(18px, 2.8vw, 32px);
       bottom:clamp(200px, 30vh, 280px);
       z-index:50;
-      font-family:'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
@@ -125,12 +121,13 @@
       text-transform:uppercase;
     }
 
+    /* CASE STUDY BOTTOM-LEFT */
     .case-study {
       position:fixed;
       bottom:clamp(54px, 7.5vh, 88px);
       left:clamp(18px, 2.8vw, 32px);
       z-index:50;
-      font-family:'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
@@ -160,7 +157,7 @@
       left:50%;
       transform:translateX(-50%);
       z-index:50;
-      font-family:'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
@@ -169,12 +166,13 @@
       text-align:center;
     }
 
+    /* INDUSTRIES BOTTOM-RIGHT */
     .industries {
       position:fixed;
       bottom:clamp(54px, 7.5vh, 88px);
       right:clamp(18px, 2.8vw, 32px);
       z-index:50;
-      font-family:'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
@@ -203,7 +201,7 @@
       justify-content:center;
       gap:clamp(18px, 2.8vw, 36px);
       z-index:70;
-      font-family:'Roboto Mono', monospace;
+      font-family: 'Roboto Mono', monospace;
       font-size:clamp(7.5px, 0.68vw, 9.5px);
       letter-spacing:0.6px;
       font-weight:300;
@@ -214,6 +212,11 @@
       text-decoration:none;
       text-transform:uppercase;
       letter-spacing:1.1px;
+      transition:color 0.2s;
+    }
+
+    .footer a:hover {
+      color:rgba(255,255,255,0.78);
     }
 
     .footer .divider {
@@ -224,40 +227,255 @@
       color:rgba(255,255,255,0.32);
     }
 
-    /* MOBILE PORTRAIT ONLY — STACK ATTRIBUTES LEFT */
-    @media (max-width:768px) and (orientation:portrait) {
-      .specs-left {
-        bottom:240px;
-        left:14px;
-        max-width:80%;
+    /* ============================================ */
+    /* MOBILE RE-DESIGN - EVERYTHING LEFT, TAGLINE CENTERED */
+    /* ============================================ */
+    @media (max-width: 768px) {
+      /* HIDE ALL DESKTOP POSITIONED ELEMENTS ON MOBILE */
+      .specs-left,
+      .specs-right,
+      .case-study,
+      .industries {
+        display: none;
       }
 
-      .specs-right {
-        left:14px;
-        right:auto;
-        bottom:170px;
-        text-align:left;
-        max-width:80%;
+      /* MOBILE CONTAINER FOR STACKED LEFT CONTENT */
+      .mobile-stack {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+        padding: 80px 20px 120px 20px;
+        z-index: 40;
       }
 
-      .tagline-section {
-        bottom:100px;
+      /* MOBILE TITLE ADJUSTMENT */
+      .title {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+      }
+      
+      .title h1 {
+        font-size: clamp(22px, 7.5vw, 40px);
+        letter-spacing: -1px;
+      }
+
+      /* MOBILE SCORE ADJUSTMENT */
+      .hero {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 20px 0 30px 0;
+        text-align: center;
+        width: 100%;
+      }
+      
+      .score {
+        font-size: clamp(70px, 25vw, 120px);
+        text-align: center;
+        display: inline-block;
+      }
+
+      /* ALL CONTENT LEFT-JUSTIFIED IN MOBILE STACK */
+      .mobile-specs-left,
+      .mobile-specs-right,
+      .mobile-case-study,
+      .mobile-industries {
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 1.6;
+        letter-spacing: 0.25px;
+        color: rgba(255,255,255,0.78);
+        text-align: left;
+        margin-bottom: 24px;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .mobile-specs-label,
+      .mobile-attributes-label,
+      .mobile-case-label,
+      .mobile-industries-label {
+        font-weight: 500;
+        color: rgba(255,255,255,0.55);
+        margin-bottom: 8px;
+        letter-spacing: 1.4px;
+        font-size: 11px;
+        text-transform: uppercase;
+      }
+
+      .mobile-case-result {
+        margin-top: 8px;
+        font-weight: 500;
+        color: rgba(255,255,255,0.88);
+      }
+
+      /* MOBILE TAGLINE - CENTERED AT BOTTOM */
+      .mobile-tagline {
+        position: fixed;
+        bottom: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 50;
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0.25px;
+        color: rgba(255,255,255,0.78);
+        text-align: center;
+        width: 100%;
+        padding: 0 20px;
+      }
+
+      /* MOBILE FOOTER */
+      .footer {
+        position: fixed;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        flex-direction: row;
+        gap: 12px;
+        font-size: 10px;
+        padding: 0 20px;
+      }
+
+      .footer .divider {
+        display: inline;
+      }
+    }
+
+    /* MOBILE LANDSCAPE ADJUSTMENTS */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .mobile-stack {
+        padding: 60px 20px 100px 20px;
+      }
+      
+      .title {
+        top: 12px;
+      }
+      
+      .title h1 {
+        font-size: clamp(20px, 5vw, 32px);
+      }
+      
+      .hero {
+        margin: 15px 0 20px 0;
+      }
+      
+      .score {
+        font-size: clamp(60px, 15vw, 100px);
+      }
+      
+      .mobile-specs-left,
+      .mobile-specs-right,
+      .mobile-case-study,
+      .mobile-industries {
+        font-size: 10px;
+        margin-bottom: 20px;
+      }
+      
+      .mobile-tagline {
+        bottom: 60px;
+        font-size: 10px;
+      }
+      
+      .footer {
+        bottom: 14px;
+        font-size: 9px;
+      }
+    }
+
+    /* SMALL PHONES */
+    @media (max-width: 480px) and (orientation: portrait) {
+      .mobile-stack {
+        padding: 70px 16px 100px 16px;
+      }
+      
+      .title {
+        top: 16px;
+      }
+      
+      .title h1 {
+        font-size: 20px;
+      }
+      
+      .score {
+        font-size: clamp(60px, 25vw, 100px);
+      }
+      
+      .mobile-specs-left,
+      .mobile-specs-right,
+      .mobile-case-study,
+      .mobile-industries {
+        font-size: 11px;
+      }
+      
+      .mobile-tagline {
+        bottom: 70px;
+        font-size: 11px;
+      }
+      
+      .footer {
+        bottom: 24px;
+        font-size: 9px;
+      }
+    }
+
+    /* VERY SMALL HEIGHT */
+    @media (max-height: 600px) {
+      .mobile-stack {
+        padding: 60px 16px 90px 16px;
+      }
+      
+      .title h1 {
+        font-size: 18px;
+      }
+      
+      .score {
+        font-size: 50px;
+      }
+      
+      .mobile-specs-left,
+      .mobile-specs-right,
+      .mobile-case-study,
+      .mobile-industries {
+        font-size: 10px;
+        margin-bottom: 18px;
+      }
+      
+      .mobile-tagline {
+        bottom: 60px;
+        font-size: 10px;
+      }
+      
+      .footer {
+        bottom: 16px;
+        font-size: 8px;
       }
     }
   </style>
 </head>
-
 <body>
   <div id="bg"></div>
-
+  
+  <!-- DESKTOP LAYOUT -->
   <div class="title">
-    <h1>ACTUAL GENERAL<br>INTELLIGENCE</h1>
+    <h1>ACTUAL GENERAL<br />INTELLIGENCE</h1>
   </div>
 
   <div class="hero">
     <div class="score">0.810</div>
   </div>
 
+  <!-- LEFT SPECS - TECHNICAL STUFF -->
   <div class="specs-left">
     <div class="specs-label">Specifications</div>
     FOOTPRINT: 3.8GB<br>
@@ -267,6 +485,7 @@
     ARCHITECTURE: Deterministic
   </div>
 
+  <!-- RIGHT ATTRIBUTES - BEHAVIORAL STUFF -->
   <div class="specs-right">
     <div class="attributes-label">Attributes</div>
     TRAINING DATA: 0<br>
@@ -296,6 +515,54 @@
     Pharma
   </div>
 
+  <!-- MOBILE LAYOUT - HIDDEN ON DESKTOP -->
+  <div class="mobile-stack">
+    <!-- Score is already in hero div, will be repositioned by CSS -->
+    
+    <!-- Mobile left specs -->
+    <div class="mobile-specs-left">
+      <div class="mobile-specs-label">Specifications</div>
+      FOOTPRINT: 3.8GB<br>
+      DIMENSIONS: 72D<br>
+      LATENCY: &lt;1s<br>
+      DEPLOYMENT: Air-gapped<br>
+      ARCHITECTURE: Deterministic
+    </div>
+
+    <!-- Mobile attributes -->
+    <div class="mobile-specs-right">
+      <div class="mobile-attributes-label">Attributes</div>
+      TRAINING DATA: 0<br>
+      ZERO-SHOT: ✓<br>
+      HALLUCINATIONS: 0<br>
+      AMORAL: ✓<br>
+      ORIGIN: United States
+    </div>
+
+    <!-- Mobile case study -->
+    <div class="mobile-case-study">
+      <div class="mobile-case-label">Case Study</div>
+      Scorpion Venom → Neuropathic Pain<br>
+      Found without pharmaceutical training data
+      <div class="mobile-case-result">Coherence: 0.810 (+62% vs Phase II indication)</div>
+      Nature-optimized ion channels. $50B market.
+    </div>
+
+    <!-- Mobile industries -->
+    <div class="mobile-industries">
+      <div class="mobile-industries-label">Industries</div>
+      Autonomous Systems<br>
+      Defense<br>
+      Pharma
+    </div>
+  </div>
+
+  <!-- Mobile tagline -->
+  <div class="mobile-tagline">
+    Anywhere meaning exists.<br>
+    AGI computes it.
+  </div>
+
   <div class="footer">
     <a href="mailto:joel@actualgeneralintelligence.com">EMAIL</a>
     <span class="divider">|</span>
@@ -305,6 +572,14 @@
   <script>
     const IMG = 'img-6.png';
     document.getElementById('bg').style.backgroundImage = `url(${IMG})`;
+    
+    window.addEventListener('orientationchange', function() {
+      setTimeout(function() {
+        document.body.style.display = 'none';
+        document.body.offsetHeight;
+        document.body.style.display = '';
+      }, 100);
+    });
   </script>
 </body>
 </html>
