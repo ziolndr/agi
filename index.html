@@ -175,94 +175,119 @@
     }
 
     @media (max-width: 768px) {
+      html, body {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
       #bg {
         background-size:cover;
+        position:absolute;
+        min-height:100vh;
+      }
+
+      .title {
+        position:relative;
+        top:auto;
+        padding:25px 20px 10px;
       }
 
       .title h1 {
-        font-size: clamp(22px, 7.5vw, 48px);
+        font-size: 30px;
+        letter-spacing:-1.5px;
+      }
+
+      .hero {
+        position:relative;
+        top:auto;
+        left:auto;
+        transform:none;
+        text-align:center;
+        padding:40px 0 35px;
       }
 
       .score {
-        font-size: clamp(60px, 16vw, 140px);
+        font-size: 100px;
+        letter-spacing:-8px;
       }
 
       .case-study {
-        bottom:120px;
-        left:16px;
-        max-width:calc(100% - 32px);
-        font-size:8.5px;
+        position:relative;
+        bottom:auto;
+        left:auto;
+        max-width:85%;
+        margin:0 auto;
+        text-align:left;
+        font-size:8px;
         line-height:1.5;
+        padding:0 0 25px;
+      }
+
+      .case-label {
+        font-size:7px;
+        margin-bottom:5px;
       }
 
       .tagline-section {
-        bottom:80px;
+        position:relative;
+        bottom:auto;
+        left:auto;
+        transform:none;
+        padding:0 0 25px;
         font-size:8.5px;
         line-height:1.5;
       }
 
       .specs {
-        bottom:40px;
-        right:16px;
-        left:16px;
+        position:relative;
+        bottom:auto;
+        right:auto;
         text-align:center;
-        max-width:none;
-        font-size:8.5px;
+        max-width:85%;
+        margin:0 auto;
+        padding:0 0 25px;
+        font-size:8px;
         line-height:1.5;
       }
 
-      .footer {
-        bottom:10px;
-        flex-direction:row;
-        gap:12px;
-        font-size:7.5px;
+      .specs-label {
+        font-size:7px;
+        margin-bottom:5px;
       }
 
-      .footer .divider {
-        display:inline;
+      .footer {
+        position:relative;
+        bottom:auto;
+        padding:15px 0 35px;
+        font-size:7.5px;
       }
     }
 
     @media (max-width: 480px) {
-      #bg {
-        background-size:cover;
-      }
-
       .title h1 {
-        font-size: clamp(20px, 8vw, 40px);
+        font-size: 26px;
       }
 
       .score {
-        font-size: clamp(50px, 18vw, 120px);
+        font-size: 85px;
       }
 
       .case-study {
-        bottom:130px;
-        left:12px;
-        right:12px;
-        max-width:none;
         font-size:7.5px;
-        line-height:1.4;
+        max-width:90%;
       }
 
       .tagline-section {
-        bottom:90px;
-        font-size:7.5px;
-        line-height:1.4;
+        font-size:8px;
       }
 
       .specs {
-        bottom:30px;
-        left:12px;
-        right:12px;
         font-size:7.5px;
-        line-height:1.4;
+        max-width:90%;
       }
 
       .footer {
-        bottom:8px;
         font-size:7px;
-        gap:10px;
       }
     }
   </style>
@@ -303,7 +328,7 @@
     ARCHITECTURE: Deterministic<br>
     AMORAL: ✓<br>
     ORIGIN: United States
-    <div style="margin-top:clamp(12px, 2vh, 18px);">
+    <div style="margin-top:10px;">
       <div class="specs-label">Industries</div>
       Autonomous Systems<br>
       Defense<br>
