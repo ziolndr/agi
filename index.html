@@ -3,191 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ACTUAL GENERAL INTELLIGENCE</title>
+  <title>Actual General Intelligence</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing:border-box; margin:0; padding:0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     html, body {
-      height:100%;
-      background:#000;
-      overflow:hidden;
+      height: 100%;
+      background: #000;
+      font-family: 'Roboto Mono', monospace;
+      color: rgba(255,255,255,0.8);
     }
 
-    #bg {
-      position:fixed;
-      inset:0;
-      background-image:url("/img-6.png");
-      background-position:center;
-      background-repeat:no-repeat;
-      background-size:cover;
-      z-index:0;
+    body {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "left top right"
+        "left center right"
+        "left bottom right";
+      height: 100vh;
+      overflow: hidden;
     }
 
-    .title {
-      position:fixed;
-      top:clamp(20px, 4vh, 40px);
-      left:0;
-      right:0;
-      text-align:center;
-      z-index:20;
+    .bg {
+      position: absolute;
+      inset: 0;
+      background: url('/img-6.png') center center / cover no-repeat;
+      z-index: 0;
     }
 
-    .title h1 {
-      font-family:Inter, sans-serif;
-      font-weight:900;
-      letter-spacing:-2.5px;
-      line-height:0.88;
-      font-size:clamp(28px, 4.5vw, 72px);
-      color:#ff0000;
-      text-transform:uppercase;
+    .top {
+      grid-area: top;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(20px, 5vw, 48px);
+      letter-spacing: -1px;
+      line-height: 1;
+      color: #ff0000;
+      z-index: 10;
+      margin-top: clamp(20px, 5vh, 40px);
     }
 
-    .content {
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:10;
-      pointer-events:none;
+    .center {
+      grid-area: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
     }
 
     .score {
-      font-family:Inter, sans-serif;
-      font-weight:900;
-      font-size:clamp(96px, 20vw, 280px);
-      line-height:0.85;
-      letter-spacing:-0.08em;
-      color:#ff0000;
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(64px, 20vw, 240px);
+      line-height: 1;
+      color: #ff0000;
     }
 
-    .bottom {
-      position:fixed;
-      bottom:clamp(20px, 4vh, 32px);
-      left:0;
-      right:0;
-      display:flex;
-      justify-content:space-between;
-      padding:0 clamp(20px, 3vw, 32px);
-      z-index:20;
-      gap:24px;
+    .left, .right {
+      z-index: 10;
+      padding: clamp(12px, 2vw, 32px);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-line;
     }
 
-    .case, .specs {
-      font-family:'Roboto Mono', monospace;
-      font-size:11px;
-      line-height:1.7;
-      letter-spacing:0.5px;
-      color:rgba(255,255,255,0.8);
-      max-width:320px;
-      text-shadow:0 1px 4px rgba(0,0,0,0.8);
+    .left {
+      grid-area: left;
+      text-align: left;
+      align-self: flex-end;
+    }
+
+    .right {
+      grid-area: right;
+      text-align: right;
+      align-self: flex-end;
     }
 
     .label {
-      font-size:10px;
-      letter-spacing:1.4px;
-      color:rgba(255,255,255,0.45);
-      margin-bottom:6px;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 4px;
+      text-transform: uppercase;
     }
 
-    .strong {
-      color:#fff;
-      font-weight:500;
-      margin-top:6px;
+    .bottom {
+      grid-area: bottom;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 24px 20px;
+      font-size: 10px;
+      opacity: 0.6;
     }
 
-    .util {
-      position:fixed;
-      top:24px;
-      left:24px;
-      font-family:'Roboto Mono', monospace;
-      font-size:11px;
-      letter-spacing:0.6px;
-      z-index:30;
+    .bottom a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
     }
 
-    .util a {
-      color:rgba(255,255,255,0.6);
-      text-decoration:none;
-    }
-
-    /* MOBILE — CLEAN */
-    @media (max-width:768px) {
-
-      .title {
-        top:64px;
+    @media (max-width: 768px) {
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+        text-align: center;
       }
 
-      .score {
-        font-size:clamp(88px, 28vw, 160px);
+      .top {
+        margin-top: 0;
+      }
+
+      .left, .right {
+        display: block;
+        text-align: center;
+        font-size: 11px;
+        padding: 8px 0;
       }
 
       .bottom {
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-        bottom:56px;
-        padding:0 16px;
-        gap:16px;
-      }
-
-      .case {
-        font-size:12px;
-      }
-
-      .specs {
-        font-size:11px;
-        opacity:0.85;
-      }
-
-      .util {
-        top:auto;
-        bottom:16px;
-        left:50%;
-        transform:translateX(-50%);
-        opacity:0.6;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 11px;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 16px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div id="bg"></div>
+  <div class="bg"></div>
 
-  <div class="util">
-    <a href="mailto:joel@actualgeneralintelligence.com">EMAIL</a>
+  <div class="top">
+    ACTUAL GENERAL<br>INTELLIGENCE
   </div>
 
-  <div class="title">
-    <h1>ACTUAL GENERAL<br>INTELLIGENCE</h1>
+  <div class="left">
+    <div class="label">CASE STUDY</div>
+    Scorpion Venom → Neuropathic Pain<br>
+    <br>
+    <strong>Coherence: 0.810</strong>
   </div>
 
-  <div class="content">
+  <div class="center">
     <div class="score">0.810</div>
   </div>
 
-  <div class="bottom">
-    <div class="case">
-      <div class="label">CASE STUDY</div>
-      Scorpion Venom → Neuropathic Pain
-      <div class="strong">Coherence: 0.810</div>
-    </div>
+  <div class="right">
+    <div class="label">SPECIFICATIONS</div>
+    FOOTPRINT: 26MB<br>
+    LATENCY: &lt;1s<br>
+    TRAINING DATA: 0<br>
+    HALLUCINATIONS: 0<br>
+    DEPLOYMENT: Air-gapped<br>
+    ARCHITECTURE: Deterministic<br>
+    ORIGIN: United States
+  </div>
 
-    <div class="specs">
-      <div class="label">SPECIFICATIONS</div>
-      FOOTPRINT: 26MB<br>
-      LATENCY: &lt;1s<br>
-      TRAINING DATA: 0<br>
-      HALLUCINATIONS: 0<br>
-      DEPLOYMENT: Air-gapped<br>
-      ARCHITECTURE: Deterministic<br>
-      ORIGIN: United States
-    </div>
+  <div class="bottom">
+    <div><a href="mailto:joel@actualgeneralintelligence.com">EMAIL</a></div>
+    <div><a href="https://actualgeneralintelligence.com">actualgeneralintelligence.com</a></div>
   </div>
 </body>
 </html>
