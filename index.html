@@ -235,21 +235,20 @@
       .title {
         position:relative;
         top:auto;
-        padding:20px 15px 10px;
+        padding:18px 18px 8px;
       }
 
       .title h1 {
-        font-size: 28px;
-        letter-spacing:-1.2px;
+        font-size: 26px;
+        letter-spacing:-1px;
+        text-align:center;
       }
 
       .hero {
-        position:relative;
-        top:auto;
-        left:auto;
-        transform:none;
-        text-align:center;
-        padding:25px 0 20px;
+        position:absolute;
+        top:38%;
+        left:50%;
+        transform:translate(-50%, -50%);
       }
 
       .score {
@@ -260,7 +259,6 @@
       .specs-left,
       .specs-right,
       .case-study,
-      .tagline-section,
       .industries {
         position:relative;
         bottom:auto;
@@ -268,30 +266,86 @@
         right:auto;
         transform:none;
         max-width:none;
-        padding:0 20px 18px;
+        padding:0 18px 20px;
         text-align:left;
-        font-size:8px;
-        line-height:1.5;
+        font-size:9px;
+        line-height:1.6;
+        font-weight:500;
+      }
+
+      .specs-left {
+        margin-top:calc(38vh + 50px);
       }
 
       .specs-label,
       .attributes-label,
       .case-label,
       .industries-label {
-        font-size:7px;
-        margin-bottom:5px;
+        font-size:8px;
+        margin-bottom:6px;
+        font-weight:700;
+      }
+
+      .case-result {
+        font-weight:700;
       }
 
       .tagline-section {
-        text-align:center;
-        padding:18px 20px;
-        font-size:8.5px;
+        position:relative;
+        bottom:auto;
+        left:auto;
+        transform:none;
+        text-align:left;
+        padding:0 18px 24px;
+        font-size:9.5px;
+        font-weight:400;
       }
 
       .footer {
         position:relative;
         bottom:auto;
-        padding:20px 20px 30px;
+        padding:20px 18px 32px;
+        font-size:8px;
+      }
+    }
+
+    @media (max-width: 768px) and (orientation: landscape) {
+      .title {
+        padding:12px 18px 6px;
+      }
+
+      .title h1 {
+        font-size: 22px;
+      }
+
+      .hero {
+        top:35%;
+      }
+
+      .score {
+        font-size: 70px;
+        letter-spacing:-5px;
+      }
+
+      .specs-left {
+        margin-top:calc(35vh + 40px);
+      }
+
+      .specs-left,
+      .specs-right,
+      .case-study,
+      .tagline-section,
+      .industries {
+        padding:0 18px 16px;
+        font-size:8.5px;
+      }
+
+      .tagline-section {
+        padding:0 18px 20px;
+      }
+
+      .footer {
+        padding:16px 18px 26px;
         font-size:7.5px;
       }
     }
@@ -301,8 +355,16 @@
         font-size: 24px;
       }
 
+      .hero {
+        top:36%;
+      }
+
       .score {
         font-size: 80px;
+      }
+
+      .specs-left {
+        margin-top:calc(36vh + 45px);
       }
 
       .specs-left,
@@ -310,12 +372,16 @@
       .case-study,
       .tagline-section,
       .industries {
-        font-size:7.5px;
-        padding:0 16px 16px;
+        font-size:8.5px;
+        padding:0 16px 18px;
+      }
+
+      .tagline-section {
+        padding:0 16px 22px;
       }
 
       .footer {
-        font-size:7px;
+        font-size:7.5px;
         padding:18px 16px 28px;
       }
     }
