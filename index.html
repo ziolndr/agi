@@ -6,7 +6,7 @@
   <title>ACTUAL GENERAL INTELLIGENCE</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta property="og:title" content="ACTUAL GENERAL INTELLIGENCE">
-  <meta property="og:description" content="Scorpion Venom → Neuropathic Pain. Coherence: 0.810. 26MB deterministic semantic engine.">
+  <meta property="og:description" content="Scorpion Venom → Neuropathic Pain. Coherence: 0.810. 3.8GB deterministic semantic engine.">
   <meta property="og:image" content="https://actualgeneralintelligence.com/og-image.png">
   <meta property="og:url" content="https://actualgeneralintelligence.com">
   <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
   <meta name="twitter:image" content="https://actualgeneralintelligence.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing:border-box; margin:0; padding:0; }
     html, body { 
@@ -36,160 +36,201 @@
 
     .title {
       position:fixed;
-      top:clamp(24px, 4vh, 40px);
+      top:clamp(28px, 4.5vh, 44px);
       left:0;
       right:0;
       text-align:center;
       z-index:50;
     }
     .title h1 {
-      font-family: Inter, sans-serif;
+      font-family: Inter, -apple-system, sans-serif;
       font-weight:900;
       letter-spacing:-2.5px;
       text-transform:uppercase;
       line-height:0.88;
-      font-size: clamp(28px, 4.5vw, 72px);
+      font-size: clamp(30px, 4.8vw, 76px);
       color:#ff0000;
     }
 
-    .content {
+    .hero {
       position:fixed;
-      inset:0;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      z-index:10;
       display:flex;
       flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      z-index:10;
-      padding:0 20px;
+      align-items:flex-start;
+      gap:clamp(20px, 3vh, 36px);
     }
 
     .score {
-      font-family: Inter, sans-serif;
+      font-family: Inter, -apple-system, sans-serif;
       font-weight:900;
-      font-size:clamp(100px, 20vw, 280px);
-      line-height:0.85;
-      letter-spacing:clamp(-8px, -1vw, -12px);
+      font-size:clamp(120px, 22vw, 300px);
+      line-height:0.82;
+      letter-spacing:clamp(-10px, -1.2vw, -14px);
       color:#ff0000;
-      margin-bottom:clamp(16px, 2vh, 24px);
+    }
+
+    .tagline {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight:700;
+      font-size:clamp(11px, 1.3vw, 18px);
+      letter-spacing:-0.2px;
+      line-height:1.35;
+      color:#ffffff;
+      max-width:clamp(240px, 35vw, 480px);
+      margin-left:clamp(4px, 0.8vw, 12px);
     }
 
     .case-study {
       position:fixed;
-      bottom:clamp(24px, 4vh, 32px);
-      left:clamp(20px, 3vw, 32px);
+      bottom:clamp(54px, 7.5vh, 88px);
+      left:clamp(18px, 2.8vw, 32px);
       z-index:50;
       font-family: 'Roboto Mono', monospace;
       font-weight:300;
-      font-size:clamp(9px, 0.85vw, 12px);
-      line-height:1.7;
-      letter-spacing:0.5px;
-      color:rgba(255,255,255,0.75);
-      max-width:clamp(200px, 25vw, 320px);
+      font-size:clamp(7.5px, 0.72vw, 10.5px);
+      line-height:1.5;
+      letter-spacing:0.25px;
+      color:rgba(255,255,255,0.78);
+      max-width:clamp(170px, 21vw, 290px);
     }
 
     .case-label {
-      font-weight:400;
-      color:rgba(255,255,255,0.5);
+      font-weight:500;
+      color:rgba(255,255,255,0.55);
       margin-bottom:6px;
-      letter-spacing:1.5px;
-      font-size:clamp(8px, 0.75vw, 10px);
+      letter-spacing:1.4px;
+      font-size:clamp(6.5px, 0.62vw, 8.8px);
+      text-transform:uppercase;
     }
 
     .case-result {
-      margin-top:8px;
+      margin-top:6px;
       font-weight:500;
-      color:rgba(255,255,255,0.85);
+      color:rgba(255,255,255,0.88);
     }
 
     .specs {
       position:fixed;
-      bottom:clamp(24px, 4vh, 32px);
-      right:clamp(20px, 3vw, 32px);
+      bottom:clamp(54px, 7.5vh, 88px);
+      right:clamp(18px, 2.8vw, 32px);
       z-index:50;
       font-family: 'Roboto Mono', monospace;
       font-weight:300;
-      font-size:clamp(9px, 0.85vw, 12px);
-      line-height:1.7;
-      letter-spacing:0.5px;
-      color:rgba(255,255,255,0.75);
+      font-size:clamp(7.5px, 0.72vw, 10.5px);
+      line-height:1.5;
+      letter-spacing:0.25px;
+      color:rgba(255,255,255,0.78);
       text-align:right;
-      max-width:clamp(200px, 25vw, 280px);
+      max-width:clamp(170px, 21vw, 250px);
     }
 
     .specs-label {
-      font-weight:400;
-      color:rgba(255,255,255,0.5);
+      font-weight:500;
+      color:rgba(255,255,255,0.55);
       margin-bottom:6px;
-      letter-spacing:1.5px;
-      font-size:clamp(8px, 0.75vw, 10px);
+      letter-spacing:1.4px;
+      font-size:clamp(6.5px, 0.62vw, 8.8px);
+      text-transform:uppercase;
     }
 
-    .domain {
+    .footer {
       position:fixed;
-      top:clamp(24px, 4vh, 32px);
-      right:clamp(20px, 3vw, 32px);
+      bottom:clamp(14px, 2.2vh, 20px);
+      left:0;
+      right:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:clamp(18px, 2.8vw, 36px);
+      z-index:70;
       font-family: 'Roboto Mono', monospace;
-      font-size:clamp(9px, 0.85vw, 12px);
-      letter-spacing:0.8px;
-      color:rgba(255,255,255,0.4);
+      font-size:clamp(7.5px, 0.68vw, 9.5px);
+      letter-spacing:0.6px;
       font-weight:300;
     }
 
-    .contact {
-      position:fixed;
-      bottom:clamp(24px, 4vh, 32px);
-      left:50%;
-      transform:translateX(-50%);
-      font-family: 'Roboto Mono', monospace;
-      font-size:clamp(9px, 0.85vw, 12px);
-      letter-spacing:0.5px;
-      font-weight:300;
-      z-index:60;
-    }
-
-    .contact a {
-      color:rgba(255,255,255,0.5);
+    .footer a {
+      color:rgba(255,255,255,0.42);
       text-decoration:none;
+      text-transform:uppercase;
+      letter-spacing:1.1px;
       transition:color 0.2s;
     }
 
-    .contact a:hover {
-      color:rgba(255,255,255,0.9);
+    .footer a:hover {
+      color:rgba(255,255,255,0.78);
     }
 
-    .contact a u {
-      text-decoration:underline;
-      text-underline-offset:3px;
+    .footer .divider {
+      color:rgba(255,255,255,0.22);
+    }
+
+    .footer .domain {
+      color:rgba(255,255,255,0.32);
     }
 
     @media (max-width: 768px) {
-      .case-study, .specs {
-        position:static;
-        margin:0 auto;
-        text-align:center;
-        max-width:90%;
+      .title h1 {
+        font-size: clamp(22px, 7.5vw, 48px);
       }
-      
+
+      .hero {
+        align-items:center;
+        gap:clamp(16px, 2.5vh, 28px);
+      }
+
+      .score {
+        font-size: clamp(80px, 18vw, 200px);
+      }
+
+      .tagline {
+        font-size:clamp(9px, 2.2vw, 13px);
+        max-width:88%;
+        text-align:center;
+        margin-left:0;
+      }
+
+      .case-study {
+        bottom:76px;
+        left:14px;
+        max-width:calc(48% - 18px);
+        font-size:7.2px;
+        line-height:1.4;
+      }
+
       .specs {
-        text-align:center;
-        margin-top:20px;
-      }
-      
-      .bottom-content {
-        position:fixed;
-        bottom:60px;
-        left:0;
-        right:0;
-        z-index:50;
+        bottom:76px;
+        right:14px;
+        max-width:calc(48% - 18px);
+        font-size:7.2px;
+        line-height:1.4;
       }
 
-      .contact {
-        bottom:20px;
-        font-size:10px;
+      .footer {
+        bottom:44px;
+        flex-direction:column;
+        gap:5px;
+        font-size:7.2px;
       }
 
-      .domain {
-        font-size:9px;
+      .footer .divider {
+        display:none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .case-study, .specs {
+        bottom:86px;
+        font-size:6.8px;
+      }
+
+      .footer {
+        bottom:54px;
+        font-size:6.8px;
       }
     }
   </style>
@@ -201,33 +242,43 @@
     <h1>ACTUAL GENERAL<br />INTELLIGENCE</h1>
   </div>
 
-  <div class="domain">actualgeneralintelligence.com</div>
-
-  <div class="contact">
-    <a href="mailto:joel@actualgeneralintelligence.com">EMAIL</a>
-  </div>
-
-  <div class="content">
+  <div class="hero">
     <div class="score">0.810</div>
+    <div class="tagline">
+      Autonomous Systems.<br>
+      Defense.<br>
+      Pharma.<br>
+      <br>
+      Anywhere meaning exists.<br>
+      AGI computes it.
+    </div>
   </div>
 
-  <div class="bottom-content">
-    <div class="case-study">
-      <div class="case-label">CASE STUDY</div>
-      Scorpion Venom → Neuropathic Pain
-      <div class="case-result">Coherence: 0.810</div>
-    </div>
+  <div class="case-study">
+    <div class="case-label">Case Study</div>
+    Scorpion Venom → Neuropathic Pain<br>
+    Found without pharmaceutical training data
+    <div class="case-result">Coherence: 0.810 (+62% vs Phase II indication)</div>
+    Nature-optimized ion channels. $50B market.
+  </div>
 
-    <div class="specs">
-      <div class="specs-label">SPECIFICATIONS</div>
-      FOOTPRINT: 3.8GB<br>
-      LATENCY: &lt;1s<br>
-      TRAINING DATA: 0<br>
-      HALLUCINATIONS: 0<br>
-      DEPLOYMENT: Air-gapped<br>
-      ARCHITECTURE: Deterministic<br>
-      ORIGIN: United States
-    </div>
+  <div class="specs">
+    <div class="specs-label">Specifications</div>
+    FOOTPRINT: 3.8GB<br>
+    LATENCY: &lt;1s<br>
+    TRAINING DATA: 0<br>
+    ZERO-SHOT: ✓<br>
+    HALLUCINATIONS: 0<br>
+    DEPLOYMENT: Air-gapped<br>
+    ARCHITECTURE: Deterministic<br>
+    AMORAL: ✓<br>
+    ORIGIN: United States
+  </div>
+
+  <div class="footer">
+    <a href="mailto:joel@actualgeneralintelligence.com">EMAIL</a>
+    <span class="divider">|</span>
+    <span class="domain">actualgeneralintelligence.com</span>
   </div>
 
   <script>
