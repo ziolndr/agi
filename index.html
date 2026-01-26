@@ -29,11 +29,10 @@
     #bg {
       position:fixed;
       inset:0;
-      background-color: #000;
+      background-image: url('/img-6.png');
       background-position:center;
       background-size:contain;
       background-repeat:no-repeat;
-      background-attachment: fixed;
     }
 
     .title {
@@ -71,7 +70,6 @@
       color:#ff0000;
     }
 
-    /* LEFT SPECS - ABOVE CASE STUDY */
     .specs-left {
       position:fixed;
       left:clamp(18px, 2.8vw, 32px);
@@ -96,7 +94,6 @@
       text-transform:uppercase;
     }
 
-    /* RIGHT ATTRIBUTES - ABOVE INDUSTRIES */
     .specs-right {
       position:fixed;
       right:clamp(18px, 2.8vw, 32px);
@@ -121,7 +118,6 @@
       text-transform:uppercase;
     }
 
-    /* CASE STUDY BOTTOM-LEFT */
     .case-study {
       position:fixed;
       bottom:clamp(54px, 7.5vh, 88px);
@@ -166,7 +162,6 @@
       text-align:center;
     }
 
-    /* INDUSTRIES BOTTOM-RIGHT */
     .industries {
       position:fixed;
       bottom:clamp(54px, 7.5vh, 88px);
@@ -198,13 +193,13 @@
       right:0;
       display:flex;
       align-items:center;
-      justify-content:center;
-      gap:clamp(18px, 2.8vw, 36px);
+      justify-content:space-between;
       z-index:70;
       font-family: 'Roboto Mono', monospace;
       font-size:clamp(7.5px, 0.68vw, 9.5px);
       letter-spacing:0.6px;
       font-weight:300;
+      padding: 0 clamp(18px, 2.8vw, 32px);
     }
 
     .footer a {
@@ -219,246 +214,109 @@
       color:rgba(255,255,255,0.78);
     }
 
-    .footer .divider {
-      color:rgba(255,255,255,0.22);
-    }
-
     .footer .domain {
       color:rgba(255,255,255,0.32);
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
     }
 
-    /* ============================================ */
-    /* MOBILE RE-DESIGN - EVERYTHING LEFT, TAGLINE CENTERED */
-    /* ============================================ */
     @media (max-width: 768px) {
-      /* HIDE ALL DESKTOP POSITIONED ELEMENTS ON MOBILE */
+      html, body {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      #bg {
+        background-size:cover;
+        position:absolute;
+        min-height:100vh;
+      }
+
+      .title {
+        position:relative;
+        top:auto;
+        padding:20px 15px 10px;
+      }
+
+      .title h1 {
+        font-size: 28px;
+        letter-spacing:-1.2px;
+      }
+
+      .hero {
+        position:relative;
+        top:auto;
+        left:auto;
+        transform:none;
+        text-align:center;
+        padding:25px 0 20px;
+      }
+
+      .score {
+        font-size: 90px;
+        letter-spacing:-7px;
+      }
+
       .specs-left,
       .specs-right,
       .case-study,
+      .tagline-section,
       .industries {
-        display: none;
+        position:relative;
+        bottom:auto;
+        left:auto;
+        right:auto;
+        transform:none;
+        max-width:none;
+        padding:0 20px 18px;
+        text-align:left;
+        font-size:8px;
+        line-height:1.5;
       }
 
-      /* MOBILE CONTAINER FOR STACKED LEFT CONTENT */
-      .mobile-stack {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow-y: auto;
-        padding: 80px 20px 120px 20px;
-        z-index: 40;
+      .specs-label,
+      .attributes-label,
+      .case-label,
+      .industries-label {
+        font-size:7px;
+        margin-bottom:5px;
       }
 
-      /* MOBILE TITLE ADJUSTMENT */
-      .title {
-        position: absolute;
-        top: 20px;
-        left: 0;
-        right: 0;
-      }
-      
-      .title h1 {
-        font-size: clamp(22px, 7.5vw, 40px);
-        letter-spacing: -1px;
+      .tagline-section {
+        text-align:center;
+        padding:18px 20px;
+        font-size:8.5px;
       }
 
-      /* MOBILE SCORE ADJUSTMENT */
-      .hero {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        margin: 20px 0 30px 0;
-        text-align: center;
-        width: 100%;
-      }
-      
-      .score {
-        font-size: clamp(70px, 25vw, 120px);
-        text-align: center;
-        display: inline-block;
-      }
-
-      /* ALL CONTENT LEFT-JUSTIFIED IN MOBILE STACK */
-      .mobile-specs-left,
-      .mobile-specs-right,
-      .mobile-case-study,
-      .mobile-industries {
-        font-family: 'Roboto Mono', monospace;
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 1.6;
-        letter-spacing: 0.25px;
-        color: rgba(255,255,255,0.78);
-        text-align: left;
-        margin-bottom: 24px;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .mobile-specs-label,
-      .mobile-attributes-label,
-      .mobile-case-label,
-      .mobile-industries-label {
-        font-weight: 500;
-        color: rgba(255,255,255,0.55);
-        margin-bottom: 8px;
-        letter-spacing: 1.4px;
-        font-size: 11px;
-        text-transform: uppercase;
-      }
-
-      .mobile-case-result {
-        margin-top: 8px;
-        font-weight: 500;
-        color: rgba(255,255,255,0.88);
-      }
-
-      /* MOBILE TAGLINE - CENTERED AT BOTTOM */
-      .mobile-tagline {
-        position: fixed;
-        bottom: 70px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 50;
-        font-family: 'Roboto Mono', monospace;
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 1.5;
-        letter-spacing: 0.25px;
-        color: rgba(255,255,255,0.78);
-        text-align: center;
-        width: 100%;
-        padding: 0 20px;
-      }
-
-      /* MOBILE FOOTER */
       .footer {
-        position: fixed;
-        bottom: 20px;
-        left: 0;
-        right: 0;
-        flex-direction: row;
-        gap: 12px;
-        font-size: 10px;
-        padding: 0 20px;
-      }
-
-      .footer .divider {
-        display: inline;
+        position:relative;
+        bottom:auto;
+        padding:20px 20px 30px;
+        font-size:7.5px;
       }
     }
 
-    /* MOBILE LANDSCAPE ADJUSTMENTS */
-    @media (max-width: 768px) and (orientation: landscape) {
-      .mobile-stack {
-        padding: 60px 20px 100px 20px;
-      }
-      
-      .title {
-        top: 12px;
-      }
-      
+    @media (max-width: 480px) {
       .title h1 {
-        font-size: clamp(20px, 5vw, 32px);
+        font-size: 24px;
       }
-      
-      .hero {
-        margin: 15px 0 20px 0;
-      }
-      
-      .score {
-        font-size: clamp(60px, 15vw, 100px);
-      }
-      
-      .mobile-specs-left,
-      .mobile-specs-right,
-      .mobile-case-study,
-      .mobile-industries {
-        font-size: 10px;
-        margin-bottom: 20px;
-      }
-      
-      .mobile-tagline {
-        bottom: 60px;
-        font-size: 10px;
-      }
-      
-      .footer {
-        bottom: 14px;
-        font-size: 9px;
-      }
-    }
 
-    /* SMALL PHONES */
-    @media (max-width: 480px) and (orientation: portrait) {
-      .mobile-stack {
-        padding: 70px 16px 100px 16px;
-      }
-      
-      .title {
-        top: 16px;
-      }
-      
-      .title h1 {
-        font-size: 20px;
-      }
-      
       .score {
-        font-size: clamp(60px, 25vw, 100px);
+        font-size: 80px;
       }
-      
-      .mobile-specs-left,
-      .mobile-specs-right,
-      .mobile-case-study,
-      .mobile-industries {
-        font-size: 11px;
-      }
-      
-      .mobile-tagline {
-        bottom: 70px;
-        font-size: 11px;
-      }
-      
-      .footer {
-        bottom: 24px;
-        font-size: 9px;
-      }
-    }
 
-    /* VERY SMALL HEIGHT */
-    @media (max-height: 600px) {
-      .mobile-stack {
-        padding: 60px 16px 90px 16px;
+      .specs-left,
+      .specs-right,
+      .case-study,
+      .tagline-section,
+      .industries {
+        font-size:7.5px;
+        padding:0 16px 16px;
       }
-      
-      .title h1 {
-        font-size: 18px;
-      }
-      
-      .score {
-        font-size: 50px;
-      }
-      
-      .mobile-specs-left,
-      .mobile-specs-right,
-      .mobile-case-study,
-      .mobile-industries {
-        font-size: 10px;
-        margin-bottom: 18px;
-      }
-      
-      .mobile-tagline {
-        bottom: 60px;
-        font-size: 10px;
-      }
-      
+
       .footer {
-        bottom: 16px;
-        font-size: 8px;
+        font-size:7px;
+        padding:18px 16px 28px;
       }
     }
   </style>
@@ -466,7 +324,6 @@
 <body>
   <div id="bg"></div>
   
-  <!-- DESKTOP LAYOUT -->
   <div class="title">
     <h1>ACTUAL GENERAL<br />INTELLIGENCE</h1>
   </div>
@@ -475,7 +332,6 @@
     <div class="score">0.810</div>
   </div>
 
-  <!-- LEFT SPECS - TECHNICAL STUFF -->
   <div class="specs-left">
     <div class="specs-label">Specifications</div>
     FOOTPRINT: 3.8GB<br>
@@ -485,7 +341,6 @@
     ARCHITECTURE: Deterministic
   </div>
 
-  <!-- RIGHT ATTRIBUTES - BEHAVIORAL STUFF -->
   <div class="specs-right">
     <div class="attributes-label">Attributes</div>
     TRAINING DATA: 0<br>
@@ -515,71 +370,9 @@
     Pharma
   </div>
 
-  <!-- MOBILE LAYOUT - HIDDEN ON DESKTOP -->
-  <div class="mobile-stack">
-    <!-- Score is already in hero div, will be repositioned by CSS -->
-    
-    <!-- Mobile left specs -->
-    <div class="mobile-specs-left">
-      <div class="mobile-specs-label">Specifications</div>
-      FOOTPRINT: 3.8GB<br>
-      DIMENSIONS: 72D<br>
-      LATENCY: &lt;1s<br>
-      DEPLOYMENT: Air-gapped<br>
-      ARCHITECTURE: Deterministic
-    </div>
-
-    <!-- Mobile attributes -->
-    <div class="mobile-specs-right">
-      <div class="mobile-attributes-label">Attributes</div>
-      TRAINING DATA: 0<br>
-      ZERO-SHOT: ✓<br>
-      HALLUCINATIONS: 0<br>
-      AMORAL: ✓<br>
-      ORIGIN: United States
-    </div>
-
-    <!-- Mobile case study -->
-    <div class="mobile-case-study">
-      <div class="mobile-case-label">Case Study</div>
-      Scorpion Venom → Neuropathic Pain<br>
-      Found without pharmaceutical training data
-      <div class="mobile-case-result">Coherence: 0.810 (+62% vs Phase II indication)</div>
-      Nature-optimized ion channels. $50B market.
-    </div>
-
-    <!-- Mobile industries -->
-    <div class="mobile-industries">
-      <div class="mobile-industries-label">Industries</div>
-      Autonomous Systems<br>
-      Defense<br>
-      Pharma
-    </div>
-  </div>
-
-  <!-- Mobile tagline -->
-  <div class="mobile-tagline">
-    Anywhere meaning exists.<br>
-    AGI computes it.
-  </div>
-
   <div class="footer">
     <a href="mailto:joel@actualgeneralintelligence.com">EMAIL</a>
-    <span class="divider">|</span>
     <span class="domain">actualgeneralintelligence.com</span>
   </div>
-
-  <script>
-    const IMG = 'img-6.png';
-    document.getElementById('bg').style.backgroundImage = `url(${IMG})`;
-    
-    window.addEventListener('orientationchange', function() {
-      setTimeout(function() {
-        document.body.style.display = 'none';
-        document.body.offsetHeight;
-        document.body.style.display = '';
-      }, 100);
-    });
-  </script>
 </body>
 </html>
