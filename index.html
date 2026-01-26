@@ -4,36 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ACTUAL GENERAL INTELLIGENCE</title>
+
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
   <meta property="og:title" content="ACTUAL GENERAL INTELLIGENCE">
   <meta property="og:description" content="Scorpion Venom → Neuropathic Pain. Coherence: 0.810. 3.8GB deterministic semantic engine.">
   <meta property="og:image" content="https://actualgeneralintelligence.com/og-image.png">
   <meta property="og:url" content="https://actualgeneralintelligence.com">
   <meta property="og:type" content="website">
+
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ACTUAL GENERAL INTELLIGENCE">
   <meta name="twitter:description" content="Scorpion Venom → Neuropathic Pain. Coherence: 0.810.">
   <meta name="twitter:image" content="https://actualgeneralintelligence.com/og-image.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+
   <style>
     * { box-sizing:border-box; margin:0; padding:0; }
-    html, body { 
-      height:100%; 
-      width:100%; 
-      background:#000; 
+
+    html, body {
+      height:100%;
+      width:100%;
+      background:#000;
       overflow:hidden;
     }
 
     #bg {
       position:fixed;
       inset:0;
-      background-color: #000;
+      background-color:#000;
       background-position:center;
       background-size:contain;
       background-repeat:no-repeat;
-      background-attachment: fixed;
+      background-attachment:fixed;
     }
 
     .title {
@@ -44,13 +50,14 @@
       text-align:center;
       z-index:50;
     }
+
     .title h1 {
-      font-family: Inter, -apple-system, sans-serif;
+      font-family:Inter, -apple-system, sans-serif;
       font-weight:900;
       letter-spacing:-2.5px;
       text-transform:uppercase;
       line-height:0.88;
-      font-size: clamp(30px, 4.8vw, 76px);
+      font-size:clamp(30px, 4.8vw, 76px);
       color:#ff0000;
     }
 
@@ -63,7 +70,7 @@
     }
 
     .score {
-      font-family: Inter, -apple-system, sans-serif;
+      font-family:Inter, -apple-system, sans-serif;
       font-weight:900;
       font-size:clamp(80px, 15vw, 180px);
       line-height:0.82;
@@ -71,19 +78,17 @@
       color:#ff0000;
     }
 
-    /* LEFT SPECS - ABOVE CASE STUDY WITH MORE SPACE */
     .specs-left {
       position:fixed;
       left:clamp(18px, 2.8vw, 32px);
-      bottom:clamp(200px, 30vh, 280px); /* MOVED UP MORE - MORE SPACE BELOW */
+      bottom:clamp(200px, 30vh, 280px);
       z-index:50;
-      font-family: 'Roboto Mono', monospace;
+      font-family:'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
       letter-spacing:0.25px;
       color:rgba(255,255,255,0.78);
-      text-align:left;
       max-width:clamp(170px, 21vw, 250px);
     }
 
@@ -96,13 +101,12 @@
       text-transform:uppercase;
     }
 
-    /* RIGHT ATTRIBUTES - ABOVE INDUSTRIES */
     .specs-right {
       position:fixed;
       right:clamp(18px, 2.8vw, 32px);
-      bottom:clamp(200px, 30vh, 280px); /* SAME AS LEFT FOR SYMMETRY */
+      bottom:clamp(200px, 30vh, 280px);
       z-index:50;
-      font-family: 'Roboto Mono', monospace;
+      font-family:'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
@@ -121,13 +125,12 @@
       text-transform:uppercase;
     }
 
-    /* CASE STUDY BOTTOM-LEFT - NOW MORE SPACE ABOVE */
     .case-study {
       position:fixed;
       bottom:clamp(54px, 7.5vh, 88px);
       left:clamp(18px, 2.8vw, 32px);
       z-index:50;
-      font-family: 'Roboto Mono', monospace;
+      font-family:'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
@@ -157,7 +160,7 @@
       left:50%;
       transform:translateX(-50%);
       z-index:50;
-      font-family: 'Roboto Mono', monospace;
+      font-family:'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
@@ -166,13 +169,12 @@
       text-align:center;
     }
 
-    /* INDUSTRIES BOTTOM-RIGHT - NOW MORE SPACE ABOVE */
     .industries {
       position:fixed;
       bottom:clamp(54px, 7.5vh, 88px);
       right:clamp(18px, 2.8vw, 32px);
       z-index:50;
-      font-family: 'Roboto Mono', monospace;
+      font-family:'Roboto Mono', monospace;
       font-weight:300;
       font-size:clamp(7.5px, 0.72vw, 10.5px);
       line-height:1.5;
@@ -201,7 +203,7 @@
       justify-content:center;
       gap:clamp(18px, 2.8vw, 36px);
       z-index:70;
-      font-family: 'Roboto Mono', monospace;
+      font-family:'Roboto Mono', monospace;
       font-size:clamp(7.5px, 0.68vw, 9.5px);
       letter-spacing:0.6px;
       font-weight:300;
@@ -212,11 +214,6 @@
       text-decoration:none;
       text-transform:uppercase;
       letter-spacing:1.1px;
-      transition:color 0.2s;
-    }
-
-    .footer a:hover {
-      color:rgba(255,255,255,0.78);
     }
 
     .footer .divider {
@@ -227,342 +224,40 @@
       color:rgba(255,255,255,0.32);
     }
 
-    /* MOBILE PORTRAIT - ADD THAT BREATHING ROOM */
-    @media (max-width: 768px) and (orientation: portrait) {
-      #bg {
-        background-size: cover;
-        background-position: center center;
-      }
-      
-      .title {
-        top: 20px;
-      }
-      
-      .title h1 {
-        font-size: clamp(22px, 7.5vw, 48px);
-        letter-spacing: -1px;
-      }
-
-      .hero {
-        top: 50%;
-      }
-      
-      .score {
-        font-size: clamp(70px, 20vw, 140px);
-      }
-
-      /* LEFT AND RIGHT SPECS WITH MORE SPACE ABOVE BOTTOM CONTENT */
+    /* MOBILE PORTRAIT ONLY — STACK ATTRIBUTES LEFT */
+    @media (max-width:768px) and (orientation:portrait) {
       .specs-left {
-        bottom: 220px; /* MORE SPACE BELOW */
-        left: 14px;
-        max-width: 45%;
-        font-size: 8px;
-        line-height: 1.4;
+        bottom:240px;
+        left:14px;
+        max-width:80%;
       }
 
       .specs-right {
-        bottom: 220px; /* SAME AS LEFT */
-        right: 14px;
-        max-width: 45%;
-        font-size: 8px;
-        line-height: 1.4;
-      }
-
-      /* BOTTOM CONTENT - NOW WITH MORE SPACE ABOVE */
-      .case-study {
-        bottom: 90px;
-        left: 14px;
-        max-width: 45%;
-        font-size: 8px;
-        line-height: 1.4;
+        left:14px;
+        right:auto;
+        bottom:170px;
+        text-align:left;
+        max-width:80%;
       }
 
       .tagline-section {
-        bottom: 90px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 8px;
-        line-height: 1.4;
-        max-width: 80%;
-      }
-
-      .industries {
-        bottom: 90px;
-        right: 14px;
-        max-width: 45%;
-        font-size: 8px;
-        line-height: 1.4;
-      }
-
-      .footer {
-        bottom: 24px;
-        flex-direction: row;
-        gap: 12px;
-        font-size: 8px;
-      }
-
-      .footer .divider {
-        display: inline;
-      }
-    }
-
-    /* MOBILE LANDSCAPE - SYMMETRICAL SPACING */
-    @media (max-width: 768px) and (orientation: landscape) {
-      #bg {
-        background-size: cover;
-        background-position: center center;
-      }
-      
-      .title {
-        top: 12px;
-      }
-      
-      .title h1 {
-        font-size: clamp(20px, 4vw, 32px);
-        letter-spacing: -0.5px;
-        line-height: 0.9;
-      }
-
-      .hero {
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-      
-      .score {
-        font-size: clamp(60px, 15vw, 100px);
-        letter-spacing: clamp(-6px, -0.8vw, -8px);
-      }
-
-      /* LANDSCAPE SPECS WITH MORE SPACE */
-      .specs-left {
-        bottom: 150px; /* MORE SPACE */
-        left: 14px;
-        max-width: 40%;
-        font-size: 7px;
-        line-height: 1.3;
-      }
-
-      .specs-right {
-        bottom: 150px; /* SAME AS LEFT */
-        right: 14px;
-        max-width: 40%;
-        font-size: 7px;
-        line-height: 1.3;
-      }
-
-      /* BOTTOM CONTENT */
-      .case-study {
-        bottom: 60px;
-        left: 14px;
-        max-width: 40%;
-        font-size: 7px;
-        line-height: 1.3;
-      }
-
-      .tagline-section {
-        bottom: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 7px;
-        line-height: 1.3;
-        max-width: 60%;
-      }
-
-      .industries {
-        bottom: 60px;
-        right: 14px;
-        max-width: 40%;
-        font-size: 7px;
-        line-height: 1.3;
-      }
-
-      .footer {
-        bottom: 14px;
-        flex-direction: row;
-        gap: 10px;
-        font-size: 7px;
-      }
-
-      .footer .divider {
-        display: inline;
-      }
-    }
-
-    /* SMALL PHONES - MAINTAIN SPACING */
-    @media (max-width: 480px) and (orientation: portrait) {
-      .title {
-        top: 16px;
-      }
-      
-      .title h1 {
-        font-size: 20px;
-      }
-
-      .score {
-        font-size: clamp(60px, 25vw, 120px);
-      }
-
-      /* COMPACT BUT WITH SPACING */
-      .specs-left {
-        bottom: 190px; /* MAINTAIN SPACING */
-        left: 14px;
-        max-width: 45%;
-        font-size: 7px;
-      }
-
-      .specs-right {
-        bottom: 190px; /* SAME SPACING */
-        right: 14px;
-        max-width: 45%;
-        font-size: 7px;
-      }
-
-      /* BOTTOM CONTENT */
-      .case-study {
-        bottom: 100px;
-        left: 14px;
-        font-size: 7px;
-        max-width: 45%;
-      }
-
-      .tagline-section {
-        bottom: 100px;
-        font-size: 7px;
-        max-width: 70%;
-      }
-
-      .industries {
-        bottom: 100px;
-        right: 14px;
-        font-size: 7px;
-        max-width: 45%;
-      }
-
-      .footer {
-        bottom: 30px;
-        font-size: 7.5px;
-        gap: 8px;
-      }
-    }
-
-    /* SHORT SCREENS - ADJUST SPACING PROPORTIONALLY */
-    @media (max-height: 600px) {
-      .title {
-        top: 12px;
-      }
-      
-      .title h1 {
-        font-size: 18px;
-        line-height: 0.9;
-      }
-      
-      .score {
-        font-size: 50px;
-        letter-spacing: -4px;
-      }
-      
-      .hero {
-        top: 48%;
-      }
-      
-      /* TIGHTER BUT STILL SPACED */
-      .specs-left, .specs-right {
-        bottom: 150px; /* STILL SPACED FROM BOTTOM */
-        font-size: 6.5px;
-        line-height: 1.2;
-      }
-      
-      /* BOTTOM CONTENT */
-      .case-study,
-      .tagline-section,
-      .industries {
-        bottom: 55px;
-        font-size: 6.5px;
-        line-height: 1.2;
-      }
-      
-      .footer {
-        bottom: 12px;
-        font-size: 6.5px;
-      }
-    }
-
-    /* TINY LANDSCAPE - MINIMAL BUT SPACED */
-    @media (max-width: 768px) and (orientation: landscape) and (max-height: 400px) {
-      .title {
-        top: 8px;
-      }
-      
-      .title h1 {
-        font-size: 16px;
-      }
-      
-      .score {
-        font-size: 45px;
-      }
-      
-      .hero {
-        top: 46%;
-      }
-      
-      /* SUPER TIGHT BUT SPACED */
-      .specs-left, .specs-right {
-        bottom: 120px; /* STILL HAS GAP */
-        font-size: 6px;
-        line-height: 1.2;
-      }
-      
-      /* BOTTOM CONTENT */
-      .case-study,
-      .tagline-section,
-      .industries {
-        bottom: 45px;
-        font-size: 6px;
-        line-height: 1.2;
-      }
-      
-      .footer {
-        bottom: 8px;
-        font-size: 6px;
-      }
-    }
-
-    /* TABLET LANDSCAPE - SPACIOUS */
-    @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
-      .title h1 {
-        font-size: clamp(40px, 5vw, 60px);
-      }
-      
-      .score {
-        font-size: clamp(100px, 12vw, 140px);
-      }
-      
-      /* GOOD SPACING ON TABLET */
-      .specs-left, .specs-right {
-        bottom: clamp(210px, 32vh, 250px); /* MORE SPACE */
-        font-size: 9px;
-      }
-      
-      .case-study,
-      .tagline-section,
-      .industries {
-        font-size: 9px;
+        bottom:100px;
       }
     }
   </style>
 </head>
+
 <body>
   <div id="bg"></div>
-  
+
   <div class="title">
-    <h1>ACTUAL GENERAL<br />INTELLIGENCE</h1>
+    <h1>ACTUAL GENERAL<br>INTELLIGENCE</h1>
   </div>
 
   <div class="hero">
     <div class="score">0.810</div>
   </div>
 
-  <!-- LEFT SPECS - TECHNICAL STUFF -->
   <div class="specs-left">
     <div class="specs-label">Specifications</div>
     FOOTPRINT: 3.8GB<br>
@@ -572,7 +267,6 @@
     ARCHITECTURE: Deterministic
   </div>
 
-  <!-- RIGHT ATTRIBUTES - BEHAVIORAL STUFF -->
   <div class="specs-right">
     <div class="attributes-label">Attributes</div>
     TRAINING DATA: 0<br>
@@ -611,14 +305,6 @@
   <script>
     const IMG = 'img-6.png';
     document.getElementById('bg').style.backgroundImage = `url(${IMG})`;
-    
-    window.addEventListener('orientationchange', function() {
-      setTimeout(function() {
-        document.body.style.display = 'none';
-        document.body.offsetHeight;
-        document.body.style.display = '';
-      }, 100);
-    });
   </script>
 </body>
 </html>
