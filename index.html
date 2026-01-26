@@ -222,167 +222,129 @@
 
     @media (max-width: 768px) {
       html, body {
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow:hidden;
       }
 
       #bg {
         background-size:cover;
-        position:absolute;
-        min-height:100vh;
+        background-position:center center;
       }
 
       .title {
-        position:relative;
-        top:auto;
-        padding:18px 18px 8px;
+        position:fixed;
+        top:12px;
+        left:0;
+        right:0;
       }
 
       .title h1 {
-        font-size: 26px;
+        font-size: 24px;
         letter-spacing:-1px;
-        text-align:center;
       }
 
       .hero {
-        position:absolute;
-        top:38%;
+        position:fixed;
+        top:50%;
         left:50%;
         transform:translate(-50%, -50%);
       }
 
       .score {
-        font-size: 90px;
-        letter-spacing:-7px;
-      }
-
-      .specs-left,
-      .specs-right,
-      .case-study,
-      .industries {
-        position:relative;
-        bottom:auto;
-        left:auto;
-        right:auto;
-        transform:none;
-        max-width:none;
-        padding:0 18px 20px;
-        text-align:left;
-        font-size:9px;
-        line-height:1.6;
-        font-weight:500;
+        font-size: 110px;
+        letter-spacing:-8px;
       }
 
       .specs-left {
-        margin-top:calc(38vh + 50px);
+        position:fixed;
+        left:14px;
+        bottom:auto;
+        top:65%;
+        max-width:45%;
+        font-size:7px;
+        line-height:1.4;
+        font-weight:500;
       }
 
-      .specs-label,
-      .attributes-label,
-      .case-label,
-      .industries-label {
-        font-size:8px;
-        margin-bottom:6px;
-        font-weight:700;
+      .specs-right {
+        position:fixed;
+        right:14px;
+        bottom:auto;
+        top:65%;
+        max-width:45%;
+        text-align:left;
+        font-size:7px;
+        line-height:1.4;
+        font-weight:500;
       }
 
-      .case-result {
-        font-weight:700;
+      .case-study {
+        display:none;
       }
 
       .tagline-section {
-        position:relative;
-        bottom:auto;
-        left:auto;
+        position:fixed;
+        bottom:42px;
+        left:14px;
         transform:none;
         text-align:left;
-        padding:0 18px 24px;
-        font-size:9.5px;
+        font-size:7.5px;
         font-weight:400;
+        max-width:calc(100% - 28px);
+      }
+
+      .industries {
+        display:none;
+      }
+
+      .specs-label,
+      .attributes-label {
+        font-size:6.5px;
+        margin-bottom:4px;
+        font-weight:700;
       }
 
       .footer {
-        position:relative;
-        bottom:auto;
-        padding:20px 18px 32px;
-        font-size:8px;
+        position:fixed;
+        bottom:12px;
+        padding:0 14px;
+        font-size:6.5px;
       }
     }
 
     @media (max-width: 768px) and (orientation: landscape) {
-      .title {
-        padding:12px 18px 6px;
-      }
-
       .title h1 {
-        font-size: 22px;
-      }
-
-      .hero {
-        top:35%;
+        font-size: 20px;
       }
 
       .score {
-        font-size: 70px;
-        letter-spacing:-5px;
-      }
-
-      .specs-left {
-        margin-top:calc(35vh + 40px);
+        font-size: 80px;
+        letter-spacing:-6px;
       }
 
       .specs-left,
-      .specs-right,
-      .case-study,
-      .tagline-section,
-      .industries {
-        padding:0 18px 16px;
-        font-size:8.5px;
+      .specs-right {
+        top:60%;
+        font-size:6.5px;
       }
 
       .tagline-section {
-        padding:0 18px 20px;
+        bottom:36px;
+        font-size:7px;
       }
 
       .footer {
-        padding:16px 18px 26px;
-        font-size:7.5px;
+        bottom:10px;
+        font-size:6px;
       }
     }
 
     @media (max-width: 480px) {
       .title h1 {
-        font-size: 24px;
-      }
-
-      .hero {
-        top:36%;
+        font-size: 22px;
       }
 
       .score {
-        font-size: 80px;
-      }
-
-      .specs-left {
-        margin-top:calc(36vh + 45px);
-      }
-
-      .specs-left,
-      .specs-right,
-      .case-study,
-      .tagline-section,
-      .industries {
-        font-size:8.5px;
-        padding:0 16px 18px;
-      }
-
-      .tagline-section {
-        padding:0 16px 22px;
-      }
-
-      .footer {
-        font-size:7.5px;
-        padding:18px 16px 28px;
+        font-size: 100px;
       }
     }
   </style>
