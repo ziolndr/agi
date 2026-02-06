@@ -76,6 +76,12 @@
             color: var(--red);
             text-decoration: none;
         }
+
+        /* ADD THIS NEW RULE */
+        .logo.collapsed {
+            font-size: 1.4rem;
+            letter-spacing: 0.05em;
+        }
         
         .nav-links {
             display: flex;
@@ -6757,7 +6763,7 @@
     </div>
 
     <nav>
-        <a href="/" class="logo">ACTUAL GENERAL INTELLIGENCE</a>
+        <a href="#" class="logo">ACTUAL GENERAL INTELLIGENCE</a>
         <div class="nav-links">
             <a href="#impossible">Proof</a>
             <a href="#emergent">Emergent</a>
@@ -9906,7 +9912,30 @@ curl -X POST https://api.arbiter.traut.ai/v1/compare \
             toggle.textContent = overlay.classList.contains('open') ? '‹' : '›';
             document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
         }
+
+        // Logo Collapse on Scroll
+        const logo = document.querySelector('.logo');
+        const fullText = 'ACTUAL GENERAL INTELLIGENCE';
+        const shortText = 'AGI';
         
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            
+            if (scrollPosition > 100) {
+                // Scrolled down - collapse to AGI
+                if (logo.textContent !== shortText) {
+                    logo.textContent = shortText;
+                    logo.classList.add('collapsed');
+                }
+            } else {
+                // At top - expand to full name
+                if (logo.textContent !== fullText) {
+                    logo.textContent = fullText;
+                    logo.classList.remove('collapsed');
+                }
+            }
+        });
+
         // Quick Nav - Show/hide based on scroll position
         const quickNav = document.getElementById('quickNav');
         const quickNavLinks = quickNav.querySelectorAll('a');
