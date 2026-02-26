@@ -306,13 +306,95 @@ footer a { display: block; font-family: 'Roboto Mono', monospace; font-size: 9px
 footer a:hover { color: #fff; }
 
 @media (max-width: 860px) {
+  /* ── Nav / global ── */
+  nav { padding-left: 20px; padding-right: 20px; }
+
+  /* ── Hero ── */
   .hero { grid-template-columns: 1fr; }
-  .hero-r { min-height: 500px; }
+  .hero-l { padding: 32px 24px 40px; border-right: none; }
+  .hero-r { min-height: 380px; border-top: 1px solid #000; }
+  .hero-stats { flex-wrap: wrap; gap: 16px; }
+  .hero-stat { min-width: calc(50% - 8px); }
+
+  /* ── Contracts ── */
+  .contracts-head { padding: 28px 20px 20px !important; }
+  .ct-row.ct-header { display: none !important; }
+  .ct-grid { display: flex !important; flex-direction: column !important; }
+  .ct-row {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 20px !important;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    gap: 8px;
+  }
+  .ct-cell {
+    display: block !important;
+    padding: 0 !important;
+    border-left: none !important;
+    width: 100% !important;
+  }
+  .ct-cell::before {
+    content: attr(data-label);
+    display: block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.3);
+    margin-bottom: 3px;
+  }
+
+  /* ── Field tests ── */
   .ft-row { grid-template-columns: 1fr; }
-  .ft-label { border-right: none; border-bottom: 1px solid #000; }
-  footer { grid-template-columns: 1fr; padding: 32px 24px; }
-  nav, .hero-l, .manifesto { padding-left: 24px; padding-right: 24px; }
-  .demo-controls, .score-panel { padding-left: 20px; padding-right: 20px; }
+  .ft-label { border-right: none; border-bottom: 1px solid #000; padding: 24px 20px; }
+  .ft-terminal { padding: 20px; }
+  .ft-curl {
+    font-size: 8px !important;
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+    overflow-x: hidden !important;
+  }
+  .ftr { flex-wrap: wrap; gap: 4px; }
+  .ftr-label { font-size: 9px; flex: 1 1 60%; }
+  .ftr-bar { width: 100%; margin-top: 4px; }
+  .ft-finding { font-size: 10px !important; }
+
+  /* ── Demo presets ── */
+  .demo-controls { padding: 16px 20px !important; flex-wrap: wrap; gap: 6px; }
+  .preset { font-size: 8px !important; padding: 5px 8px !important; }
+  .score-panel { padding: 16px 20px !important; }
+
+  /* ── Interstitials ── */
+  .interstitial { height: 50vw; min-height: 220px; }
+
+  /* ── Manifesto ── */
+  .manifesto { padding: 48px 24px !important; }
+
+  /* ── Footer ── */
+  footer { grid-template-columns: 1fr !important; padding: 32px 20px !important; gap: 24px; }
+  .cta-bar { flex-direction: column !important; align-items: flex-start !important; padding: 24px 20px !important; gap: 12px !important; }
+  .ct-cell { padding: 4px 0 !important; border-left: none !important; }
+
+}
+
+@media (max-width: 480px) {
+  .hero-co { font-size: 18px !important; }
+  .ft-title { font-size: clamp(20px, 7vw, 32px) !important; }
+  .hero-stat { min-width: 100%; }
+  .interstitial { height: 60vw; }
+  .interstitial-caption { font-size: 9px !important; padding: 8px 16px !important; }
+}
+
+.ct-grid { display: grid; grid-template-columns: 180px 100px 1fr 1fr; }
+
+.ct-cell { padding: 10px 16px; }
+.ct-cell:first-child { padding-left: 0; }
+.cta-bar { 
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+  background: #000; padding: 36px 40px;
+  border-top: 1px solid #111; border-bottom: 1px solid #111;
 }
 </style>
 </head>
@@ -380,77 +462,77 @@ footer a:hover { color: #fff; }
   </div>
   <div class="contracts-table">
 
-    <div class="ct-row ct-header" style="display:grid;grid-template-columns:180px 100px 1fr 1fr;padding:0 40px;background:#000;">
-      <div class="ct-cell" style="padding:10px 16px 10px 0;"><span style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);">Program</span></div>
-      <div class="ct-cell" style="padding:10px 16px;border-left:1px solid rgba(255,255,255,.08);"><span style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);">Window</span></div>
-      <div class="ct-cell" style="padding:10px 16px;border-left:1px solid rgba(255,255,255,.08);"><span style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);">What they were buying</span></div>
-      <div class="ct-cell" style="padding:10px 16px;border-left:1px solid rgba(255,255,255,.08);"><span style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);">ARBITER delivers</span></div>
+    <div class="ct-row ct-header ct-grid" style="padding:0 40px;background:#000;">
+      <div class="ct-cell" data-label="Program" style="padding:10px 16px 10px 0;"><span style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);">Program</span></div>
+      <div class="ct-cell" data-label="Window" style="padding:10px 16px;border-left:1px solid rgba(255,255,255,.08);"><span style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);">Window</span></div>
+      <div class="ct-cell" data-label="What they were buying" style="padding:10px 16px;border-left:1px solid rgba(255,255,255,.08);"><span style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);">What they were buying</span></div>
+      <div class="ct-cell" data-label="ARBITER delivers" style="padding:10px 16px;border-left:1px solid rgba(255,255,255,.08);"><span style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);">ARBITER delivers</span></div>
     </div>
 
-    <div class="ct-row" style="display:grid;grid-template-columns:180px 100px 1fr 1fr;padding:0 40px;border-top:1px solid #000;">
-      <div class="ct-cell" style="padding:18px 16px 18px 0;">
+    <div class="ct-row ct-grid" style="padding:0 40px;border-top:1px solid #000;">
+      <div class="ct-cell" data-label="Program" style="padding:18px 16px 18px 0;">
         <div style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#1a6aff;margin-bottom:4px;">DARPA AIDA</div>
         <div style="font-size:13px;font-weight:700;line-height:1.2;">Active Interpretation<br>of Disparate Alternatives</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="Window" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;">2026</div>
         <div style="font-family:'Roboto Mono',monospace;font-size:8px;color:#999;margin-top:3px;">Recompete</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="What they were buying" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:400;line-height:1.7;color:#555;">"Multi-hypothesis semantic engine generating explicit alternative interpretations from noisy, conflicting, and potentially deceptive environments. Confidence measures based on semantic coherence of each hypothesis."</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="ARBITER delivers" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;line-height:1.7;color:#000;">Deterministic coherence scores across competing hypotheses. Coup vs. invasion vs. maskirovka — ranked by geometry, not probability. Same engine. Zero training.</div>
       </div>
     </div>
 
-    <div class="ct-row" style="display:grid;grid-template-columns:180px 100px 1fr 1fr;padding:0 40px;border-top:1px solid #000;">
-      <div class="ct-cell" style="padding:18px 16px 18px 0;">
+    <div class="ct-row ct-grid" style="padding:0 40px;border-top:1px solid #000;">
+      <div class="ct-cell" data-label="Program" style="padding:18px 16px 18px 0;">
         <div style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#1a6aff;margin-bottom:4px;">CJADC2</div>
         <div style="font-size:13px;font-weight:700;line-height:1.2;">Joint All-Domain<br>Command & Control</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="Window" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;">Active</div>
         <div style="font-family:'Roboto Mono',monospace;font-size:8px;color:#999;margin-top:3px;">$100M+/yr</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="What they were buying" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:400;line-height:1.7;color:#555;">Multi-domain sensor fusion with semantic alignment across command levels. Same data must produce contextually appropriate decisions at battalion, theater, and strategic level simultaneously.</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="ARBITER delivers" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;line-height:1.7;color:#000;">+165% ranking reversal Marine vs. President. Same inputs. Same candidates. Command geometry makes the alignment problem computable and closeable.</div>
       </div>
     </div>
 
-    <div class="ct-row" style="display:grid;grid-template-columns:180px 100px 1fr 1fr;padding:0 40px;border-top:1px solid #000;">
-      <div class="ct-cell" style="padding:18px 16px 18px 0;">
+    <div class="ct-row ct-grid" style="padding:0 40px;border-top:1px solid #000;">
+      <div class="ct-cell" data-label="Program" style="padding:18px 16px 18px 0;">
         <div style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#1a6aff;margin-bottom:4px;">DoD MCS</div>
         <div style="font-size:13px;font-weight:700;line-height:1.2;">Machine Common Sense<br>Semandex lapsed 02.17.26</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="Window" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;color:#1a9a5c;">Open now</div>
         <div style="font-family:'Roboto Mono',monospace;font-size:8px;color:#999;margin-top:3px;">Incumbent lapsed</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="What they were buying" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:400;line-height:1.7;color:#555;">Commonsense semantic reasoning without symbolic rule systems. Incumbent Semandex SAM registration lapsed February 17, 2026.</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="ARBITER delivers" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;line-height:1.7;color:#1a9a5c;">Window open. ARBITER is SAM active, CAGE registered, CDAO TradeWinds assessed. Ready now.</div>
       </div>
     </div>
 
-    <div class="ct-row" style="display:grid;grid-template-columns:180px 100px 1fr 1fr;padding:0 40px;border-top:1px solid #000;">
-      <div class="ct-cell" style="padding:18px 16px 18px 0;">
+    <div class="ct-row ct-grid" style="padding:0 40px;border-top:1px solid #000;">
+      <div class="ct-cell" data-label="Program" style="padding:18px 16px 18px 0;">
         <div style="font-family:'Roboto Mono',monospace;font-size:8px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#1a6aff;margin-bottom:4px;">DARPA SemaFor</div>
         <div style="font-size:13px;font-weight:700;line-height:1.2;">Semantic Forensics</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="Window" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:700;">2025–26</div>
         <div style="font-family:'Roboto Mono',monospace;font-size:8px;color:#999;margin-top:3px;">Option / recompete</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="What they were buying" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:400;line-height:1.7;color:#555;">Machine-generated and falsified content detection through semantic coherence geometry. $30M+ to SRI, Kitware, STR.</div>
       </div>
-      <div class="ct-cell" style="padding:18px 16px;border-left:1px solid #000;">
+      <div class="ct-cell" data-label="ARBITER delivers" style="padding:18px 16px;border-left:1px solid #000;">
         <div style="font-family:'Roboto Mono',monospace;font-size:10px;font-weight:700;line-height:1.7;color:#000;">Geometric coherence is the forensic primitive. Deceptive content scores incoherent with its claimed context. No training corpus required.</div>
       </div>
     </div>
@@ -482,7 +564,7 @@ footer a:hover { color: #fff; }
 </section>
 
 <!-- INTERSTITIAL — field conditions -->
-<div style="background:#000;padding:36px 40px;border-top:1px solid #111;border-bottom:1px solid #111;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+<div class="cta-bar">
   <div>
     <div style="font-family:'Roboto Mono',monospace;font-size:9px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:8px;">Technical demonstration available</div>
     <div style="font-size:clamp(18px,2.5vw,28px);font-weight:700;color:#fff;letter-spacing:-.02em;">Actual General Intelligence</div>
