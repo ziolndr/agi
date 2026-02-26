@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Actual General Intelligence</title>
+  <meta name="description" content="ARBITER scores semantic coherence as a deterministic number — air-gapped, any domain, zero training data." />
+
+  <meta property="og:title" content="Actual General Intelligence" />
+  <meta property="og:description" content="Meaning is now measurable. Deterministic semantic coherence measurement." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#fff;
+      --fg:#000;
+      --muted:#6a6a6a;
+      --hair:#111;
+      --hair2:#e9e9e9;
+      --blue:#0038FF;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:var(--sans);
+      letter-spacing:-0.01em;
+    }
+    a{color:inherit}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap:0;
+      min-height: 92vh;
+      border-bottom:1px solid var(--hair2);
+    }
+    .hero-l{
+      padding: 56px 54px 54px;
+      border-right:1px solid var(--hair2);
+    }
+    .hero-co{
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:-0.02em;
+      margin-bottom:22px;
+    }
+    .hero-h{
+      font-size:72px;
+      line-height:0.94;
+      font-weight:800;
+      letter-spacing:-0.04em;
+      margin:0 0 18px;
+    }
+    .hero-arbiter{
+      font-size:12px;
+      letter-spacing:0.26em;
+      text-transform:uppercase;
+      color:#666;
+      margin: 26px 0 18px;
+    }
+    .hero-sub{
+      max-width: 620px;
+      font-size:16px;
+      line-height:1.55;
+      color:#5f5f5f;
+    }
+    .hero-stats{
+      margin-top: 34px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .hero-stat{
+      border:1px solid var(--hair2);
+      padding: 18px 18px 16px;
+      min-height: 96px;
+    }
+    .hs-val{
+      font-size:26px;
+      font-weight:800;
+      letter-spacing:-0.03em;
+      margin-bottom:6px;
+    }
+    .hs-lbl{
+      font-size:12px;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color:#7a7a7a;
+    }
+
+    .hero-r{
+      position:relative;
+      overflow:hidden;
+      background: #fff;
+    }
+    .hero-arc{
+      position:absolute;
+      right:-130px;
+      bottom:-220px;
+      width: 640px;
+      height: 760px;
+      pointer-events:none;
+      opacity:0.98;
+    }
+
+    .demo-zone{
+      position:relative;
+      padding: 38px 34px 34px;
+      height:100%;
+      display:grid;
+      grid-template-columns: 1fr 0.62fr;
+      gap: 26px;
+      align-items:start;
+    }
+    .demo-controls{
+      padding-top: 12px;
+      min-width: 0;
+    }
+    .demo-presets{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      border-bottom:1px solid var(--hair2);
+      padding-bottom:16px;
+      margin-bottom: 14px;
+    }
+    .preset{
+      border:1px solid var(--hair2);
+      background:#fff;
+      color:#111;
+      font-size:12px;
+      padding: 9px 11px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .preset.active{
+      border-color:#111;
+      background:#111;
+      color:#fff;
+    }
+    .perspective-note{
+      color:#666;
+      font-size:12px;
+      line-height:1.45;
+      margin-bottom: 14px;
+    }
+
+    textarea{
+      width:100%;
+      border:1px solid var(--hair2);
+      outline:none;
+      padding: 12px 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.45;
+      resize: vertical;
+      min-height: 86px;
+    }
+    .cand-wrap{
+      margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .cand{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      min-width: 0;
+    }
+    .cand input{
+      width:100%;
+      border:1px solid var(--hair2);
+      padding: 10px 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      outline:none;
+      min-width: 0;
+    }
+    .cand .x{
+      border:1px solid var(--hair2);
+      background:#fff;
+      padding: 9px 10px;
+      cursor:pointer;
+      font-family: var(--mono);
+      font-size:12px;
+      color:#111;
+      flex: 0 0 auto;
+    }
+    .demo-actions{
+      margin-top: 14px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .btn-run{
+      border:1px solid #111;
+      background:#fff;
+      color:#111;
+      padding: 11px 14px;
+      font-size: 12px;
+      font-weight:800;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+    .btn-run:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+    .run-status{
+      font-family: var(--mono);
+      font-size: 12px;
+      color:#6a6a6a;
+    }
+
+    .score-panel{
+      border-left:1px solid var(--hair2);
+      padding-left: 22px;
+      min-width:0;
+    }
+    .score-label{
+      font-size:12px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:#6a6a6a;
+      margin-bottom:10px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 100%;
+    }
+    .score-rows{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .sr{
+      display:grid;
+      grid-template-columns: 18px 1fr 56px;
+      gap:10px;
+      align-items:baseline;
+      font-family: var(--mono);
+      font-size: 12px;
+      min-width:0;
+    }
+    .sr-label{
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      min-width:0;
+    }
+    .sr-score{
+      text-align:right;
+      font-variant-numeric: tabular-nums;
+    }
+    .sr-bar{
+      grid-column: 2 / 4;
+      height:2px;
+      background:#e9e9e9;
+      position:relative;
+      overflow:hidden;
+    }
+    .sr-fill{
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:0%;
+      background: var(--blue);
+      transition: width 550ms ease;
+    }
+    .sr.rank-1 .sr-fill{ height:3px; top:-1px; bottom:-1px; }
+    .score-rows.fading{ opacity: .45; transition: opacity 140ms ease; }
+
+    .interstitial{
+      position:relative;
+      background:#000;
+      color:#fff;
+      min-height: 420px;
+      overflow:hidden;
+      border-bottom: 1px solid #111;
+    }
+    .interstitial .interstitial-art{
+      position:absolute;
+      inset:0;
+      opacity:0.96;
+    }
+    .interstitial:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(80% 70% at 70% 30%, rgba(0,56,255,0.18), transparent 55%),
+                  linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.65));
+      pointer-events:none;
+    }
+    .interstitial-caption{
+      position:relative;
+      z-index:2;
+      padding: 32px 34px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      border-top:1px solid #111;
+      margin-top: 360px;
+    }
+
+    @media (max-width: 1060px){
+      .hero{ grid-template-columns: 1fr; }
+      .hero-l{ border-right:none; border-bottom:1px solid var(--hair2); }
+      .demo-zone{ grid-template-columns: 1fr; }
+      .score-panel{ border-left:none; padding-left:0; border-top:1px solid var(--hair2); padding-top: 18px; }
+      .hero-arc{ right:-210px; bottom:-260px; opacity:.85; }
+      .interstitial-caption{ margin-top: 340px; }
+    }
+    @media (max-width: 560px){
+      .hero-l{ padding: 38px 22px 28px; }
+      .hero-h{ font-size: 54px; }
+      .hero-stats{ grid-template-columns: 1fr; }
+      .demo-zone{ padding: 26px 18px 22px; }
+      .interstitial-caption{ padding: 20px 18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="hero-l">
+    <div class="hero-co">Actual General Intelligence</div>
+    <div class="hero-h">A new<br>measurement<br>standard.</div>
+    <div class="hero-arbiter">ARBITER</div>
+    <div class="hero-sub">
+      Meaning is now measurable. ARBITER scores semantic coherence as a deterministic number — the same score every invocation, air-gapped, any domain, zero training data. The infrastructure layer LLMs have been missing.
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hs-val">26MB</div><div class="hs-lbl">Complete engine</div></div>
+      <div class="hero-stat"><div class="hs-val">Air-gapped</div><div class="hs-lbl">No cloud required</div></div>
+      <div class="hero-stat"><div class="hs-val">Deterministic</div><div class="hs-lbl">Same in → same out</div></div>
+      <div class="hero-stat"><div class="hs-val">Any domain</div><div class="hs-lbl">Zero retraining</div></div>
+    </div>
+  </div>
+
+  <div class="hero-r">
+    <svg class="hero-arc" viewBox="0 0 600 700" preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M 50 700 A 600 600 0 0 1 600 100" fill="none" stroke="var(--blue)" stroke-width="12" stroke-linecap="butt"/>
+      <path d="M 15 700 A 635 635 0 0 1 600 65"  fill="none" stroke="var(--blue)" stroke-width="3"  stroke-linecap="butt" opacity=".2"/>
+      <path d="M 85 700 A 565 565 0 0 1 600 135" fill="none" stroke="var(--blue)" stroke-width="1"  stroke-linecap="butt" opacity=".08"/>
+      <circle cx="50" cy="700" r="4" fill="var(--blue)"/>
+    </svg>
+
+    <div class="demo-zone">
+      <div class="demo-controls">
+        <div class="demo-presets">
+          <button class="preset active" data-key="crowdstrike">CrowdStrike</button>
+          <button class="preset" data-key="multiint">Multi-INT</button>
+          <button class="preset" data-key="silence">The Silence</button>
+          <button class="preset" data-key="marine">Command Geometry</button>
+        </div>
+
+        <div class="perspective-note">CrowdStrike · Multi-INT · The Silence · Command Geometry — four domains, one engine.</div>
+
+        <div>
+          <textarea id="query-input" rows="2" spellcheck="false"></textarea>
+          <div class="cand-wrap" id="cands"></div>
+        </div>
+
+        <div class="demo-actions">
+          <button class="btn-run" id="run-btn">Measure →</button>
+          <span class="run-status" id="run-status"></span>
+        </div>
+      </div>
+
+      <div class="score-panel">
+        <div class="score-label" id="score-label">—</div>
+        <div class="score-rows" id="score-rows"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="interstitial" role="img" aria-label="Abstract operational silhouette and signal geometry">
+  <svg class="interstitial-art" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="matrix" values="
+          1 0 0 0 0
+          0 1 0 0 0
+          0 0 1 0 0
+          0 0 0 0.20 0"/>
+      </filter>
+
+      <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#070707" stop-opacity="0"/>
+        <stop offset="0.55" stop-color="#070707" stop-opacity="0.10"/>
+        <stop offset="1" stop-color="#070707" stop-opacity="0.92"/>
+      </linearGradient>
+
+      <radialGradient id="pulse" cx="68%" cy="32%" r="60%">
+        <stop offset="0" stop-color="#0038FF" stop-opacity="0.40"/>
+        <stop offset="0.55" stop-color="#0038FF" stop-opacity="0.12"/>
+        <stop offset="1" stop-color="#0038FF" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <rect width="1600" height="900" fill="#000"/>
+    <rect width="1600" height="900" fill="url(#pulse)"/>
+
+    <g opacity="0.16" stroke="#ffffff">
+      <path d="M0 690 H1600" />
+      <path d="M0 560 H1600" />
+      <path d="M0 430 H1600" />
+      <path d="M0 300 H1600" />
+      <path d="M0 170 H1600" />
+      <path d="M240 0 V900" />
+      <path d="M520 0 V900" />
+      <path d="M800 0 V900" />
+      <path d="M1080 0 V900" />
+      <path d="M1360 0 V900" />
+    </g>
+
+    <path d="M0 605 C220 575 420 635 620 612 C820 588 1030 560 1250 592 C1400 614 1500 660 1600 690 L1600 900 L0 900 Z"
+          fill="#0b0b0b"/>
+
+    <g fill="#0f0f0f">
+      <path d="M210 720 C250 660 310 646 360 690 C400 728 398 780 398 820 L180 820 C180 780 185 758 210 720 Z"/>
+      <path d="M540 735 C575 682 632 668 688 710 C732 742 738 786 740 820 L505 820 C505 792 510 766 540 735 Z"/>
+      <path d="M1040 705 C1090 642 1176 642 1230 705 C1260 742 1268 778 1270 820 L1005 820 C1006 780 1008 742 1040 705 Z"/>
+    </g>
+
+    <g fill="none" stroke="#0038FF">
+      <path d="M240 820 A 520 520 0 0 1 1060 210" stroke-width="10" />
+      <path d="M206 820 A 555 555 0 0 1 1084 186" stroke-width="3" opacity="0.25"/>
+      <path d="M280 820 A 480 480 0 0 1 1030 240" stroke-width="1" opacity="0.12"/>
+    </g>
+
+    <g stroke="#ffffff" opacity="0.18">
+      <path d="M1160 140 h220"/>
+      <path d="M1160 165 h160"/>
+      <path d="M1160 190 h190"/>
+      <path d="M1160 215 h140"/>
+      <path d="M1160 240 h210"/>
+    </g>
+
+    <rect width="1600" height="900" filter="url(#grain)" opacity="0.55"/>
+    <rect width="1600" height="900" fill="url(#fog)"/>
+  </svg>
+
+  <div class="interstitial-caption">The cost of the wrong interpretation.</div>
+</div>
+
+<script>
+  const PRESETS = {
+    crowdstrike: {
+      label: "CrowdStrike · Field Test 01",
+      query: "Channel File 291, template with 21 input fields, Content Interpreter expecting 20 values, kernel-level execution",
+      candidates: [
+        "memory access violation",
+        "out-of-bounds memory read",
+        "system crash BSOD",
+        "safe execution"
+      ]
+    },
+    multiint: {
+      label: "Multi-INT Fusion · Field Test 02",
+      query: "SIGINT: encrypted military communications spike 300% along border. IMINT: armored columns visible moving toward staging areas. OSINT: military family housing evacuations reported on social media. HUMINT: official channels claim routine training exercise. Timeline: 72 hours.",
+      candidates: [
+        "Imminent invasion — recommend DEFCON elevation and allied notification",
+        "Partial deployment under cover — some units moving while maintaining deception",
+        "Maskirovka deception operation — all activity designed to provoke response",
+        "Routine exercise with coincidental family movements — no threat change",
+        "Coup attempt or internal power struggle — military securing key infrastructure",
+        "Response to intelligence indicating our own mobilization — defensive posture"
+      ]
+    },
+    silence: {
+      label: "The Silence · Field Test 03",
+      query: "What is conspicuously absent? What normally happens that has stopped? What voices have gone quiet? What data has gaps? What routines have broken? The silence before the storm — what is NOT happening that should be?",
+      candidates: [
+        "Social media posts from military personnel suddenly ceased",
+        "Academic conferences on defense topics postponed",
+        "Military families stopped posting on social networks",
+        "Think tank publications on regional security paused",
+        "Base commander held his weekly press briefing normally and answered all questions"
+      ]
+    },
+    marine: {
+      label: "JADC2 Alignment · Field Test 04",
+      query: "As a Marine commander: capability × intent. As the President of the United States: capability × intent. Same signals, different semantic universe. Rank the likely state.",
+      candidates: [
+        "War",
+        "Threat",
+        "Impasse"
+      ]
+    }
+  };
+
+  function esc(s){ return (s||"").replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function setInputs(key){
+    const p = PRESETS[key];
+    const q = document.getElementById('query-input');
+    q.value = p.query;
+
+    const wrap = document.getElementById('cands');
+    wrap.innerHTML = "";
+
+    p.candidates.forEach((txt) => {
+      const row = document.createElement('div');
+      row.className = "cand";
+      row.innerHTML = `<input class="cand-input" spellcheck="false" value="${esc(txt)}" />` +
+                      `<button class="x" type="button" aria-label="Remove candidate">×</button>`;
+      row.querySelector('.x').addEventListener('click', () => {
+        row.remove();
+      });
+      wrap.appendChild(row);
+    });
+  }
+
+  function renderScores(results, label){
+    const rowsEl = document.getElementById('score-rows');
+    const labelEl = document.getElementById('score-label');
+    labelEl.textContent = label || "—";
+    rowsEl.classList.add('fading');
+    rowsEl.innerHTML = "";
+
+    const sorted = results.slice().sort((a,b)=> b.score - a.score);
+    const max = Math.max(...sorted.map(r=>r.score), 0.0001);
+
+    setTimeout(() => {
+      sorted.forEach((r, i) => {
+        const div = document.createElement('div');
+        div.className = "sr " + (i===0 ? "rank-1" : "");
+        div.innerHTML =
+          `<span class="sr-rank">${i+1}</span>` +
+          `<span class="sr-label">${esc(r.text || r.label || "")}</span>` +
+          `<span class="sr-score">${Number(r.score).toFixed(3)}</span>` +
+          `<div class="sr-bar"><div class="sr-fill" style="width:0%"></div></div>`;
+        rowsEl.appendChild(div);
+      });
+      rowsEl.classList.remove('fading');
+      requestAnimationFrame(() => {
+        rowsEl.querySelectorAll('.sr-fill').forEach((fill, i) => {
+          setTimeout(() => { fill.style.width = Math.max(0, (sorted[i].score/max)*100).toFixed(1) + "%"; }, i*50);
+        });
+      });
+    }, 140);
+  }
+
+  function localFallback(key){
+    const p = PRESETS[key] || PRESETS.crowdstrike;
+    const faux = p.candidates.map((t, i) => ({ text: t, score: Math.max(0.05, 0.82 - i*0.11) }));
+    renderScores(faux, p.label + " · Offline");
+    document.getElementById('run-status').textContent = "Offline fallback · " + new Date().toLocaleTimeString();
+  }
+
+  async function runQuery(presetKey){
+    let query, candidates, label;
+
+    if (presetKey){
+      const p = PRESETS[presetKey];
+      query = p.query;
+      candidates = p.candidates.slice();
+      label = p.label;
+    } else {
+      query = document.getElementById('query-input').value.trim();
+      candidates = Array.from(document.querySelectorAll('.cand-input')).map(el => el.value.trim()).filter(Boolean);
+      label = "Custom · " + new Date().toLocaleTimeString();
+    }
+
+    if (!query || candidates.length < 2) return;
+
+    const btn = document.getElementById('run-btn');
+    const statusEl = document.getElementById('run-status');
+    const labelEl = document.getElementById('score-label');
+
+    btn.disabled = true;
+    btn.textContent = "Measuring…";
+    statusEl.textContent = "api.arbiter.traut.ai…";
+    labelEl.textContent = "Measuring…";
+
+    try{
+      const res = await fetch("https://api.arbiter.traut.ai/public/compare", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query, candidates })
+      });
+
+      if (!res.ok) throw new Error("HTTP " + res.status);
+
+      const data = await res.json();
+      const results = data.all || data.top || [];
+      if (!results.length) throw new Error("empty");
+
+      renderScores(results, label);
+      statusEl.textContent = results.length + " candidates · " + new Date().toLocaleTimeString();
+    } catch(err){
+      statusEl.textContent = "API unreachable · showing offline demo";
+      localFallback(presetKey || "crowdstrike");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Measure →";
+    }
+  }
+
+  document.querySelectorAll(".preset").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.getAttribute("data-key");
+      document.querySelectorAll(".preset").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      setInputs(key);
+      runQuery(key);
+    });
+  });
+
+  document.getElementById("run-btn").addEventListener("click", () => runQuery(null));
+
+  document.querySelectorAll(".preset").forEach(b => b.classList.remove("active"));
+  document.querySelector('.preset[data-key="crowdstrike"]').classList.add("active");
+  setInputs("crowdstrike");
+  runQuery("crowdstrike");
+</script>
+
+</body>
+</html>
