@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>ARBITER — Deterministic AI Validation</title>
+<title>ARBITER — Deterministic Clinical Validation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,30 +12,37 @@
 :root {
   --bg: #030303;
   --bg1: #0a0a0a;
+  --bg2: #101010;
   --line: #1a1a1a;
   --line2: #444;
   --text: #f0f0f0;
   --muted: #c8c8c8;
   --dim: #a0a0a0;
+  --quiet: #777;
   --accent: #a855f7;
   --accent-light: #c084fc;
   --accent-dark: #7e22ce;
+  --pass: #7dd3a8;
+  --warn: #f2c879;
+  --reject: #ef6464;
   --mono: 'IBM Plex Mono', monospace;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
 html { background:#030303; scroll-behavior:smooth }
-body { font-family:var(--sans); color:var(--text); -webkit-font-smoothing:antialiased; overflow-x:hidden }
+body { font-family:var(--sans); color:var(--text); -webkit-font-smoothing:antialiased; overflow-x:hidden; background:#030303 }
 a { color:inherit; text-decoration:none }
 
 #bg {
   position:fixed; inset:0; z-index:0;
-  background:url('tumor.jpg') no-repeat center center;
+  background:url('tumor.png') no-repeat center center;
   background-size:cover;
 }
 #bg::after {
   content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 30% 50%, rgba(3,3,3,0.25) 0%, rgba(3,3,3,0.8) 100%);
+  background:
+    radial-gradient(ellipse at 50% 18%, rgba(168,85,247,0.16) 0%, rgba(3,3,3,0.30) 28%, rgba(3,3,3,0.82) 70%, rgba(3,3,3,0.96) 100%),
+    linear-gradient(to bottom, rgba(3,3,3,.18), rgba(3,3,3,.94));
 }
 
 #nav {
@@ -55,9 +62,7 @@ a { color:inherit; text-decoration:none }
   font-size:17px; font-weight:600; color:#fff; letter-spacing:-.02em;
 }
 .nav-logo svg { width:28px; height:28px; }
-.nav-links {
-  display:flex; align-items:center; gap:24px;
-}
+.nav-links { display:flex; align-items:center; gap:24px; }
 .nav-links a {
   font-family:var(--mono); font-size:11px; font-weight:400;
   color:var(--dim); text-decoration:none;
@@ -73,19 +78,10 @@ a { color:inherit; text-decoration:none }
 .nav-cta:hover { color:#fff; border-color:#555; background:rgba(255,255,255,.03); }
 
 .page { position:relative; z-index:10 }
-
-section {
-  position:relative;
-  border-bottom:1px solid var(--line);
-  padding:80px 9vw 80px;
-}
+section { position:relative; border-bottom:1px solid var(--line); padding:92px 9vw 92px; }
 section.center { display:flex; flex-direction:column; align-items:center; text-align:center; justify-content:center; }
 
-#hero {
-  min-height:100vh;
-  padding:90px 9vw 40px;
-  display:flex; align-items:flex-start;
-}
+#hero { min-height:100vh; padding:104px 9vw 54px; display:flex; align-items:flex-start; }
 .hero-wrap {
   display:grid; grid-template-columns:1.1fr 460px;
   gap:48px; max-width:1400px; margin:0 auto; width:100%;
@@ -100,25 +96,13 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 .hero-h {
   font-size:clamp(40px, 5.5vw, 76px);
   font-weight:300; line-height:1.05;
-  letter-spacing:-.04em;
-  color:#fff;
+  letter-spacing:-.04em; color:#fff;
   opacity:0; animation:riseIn .9s .35s cubic-bezier(.16,1,.3,1) forwards;
 }
-.hero-body {
-  margin-top:16px; max-width:480px;
-  opacity:0; animation:riseIn .8s .5s cubic-bezier(.16,1,.3,1) forwards;
-}
-.hero-body p {
-  font-size:17px; color:var(--muted); line-height:1.65;
-}
-.hero-ctas {
-  display:flex; gap:14px; flex-wrap:wrap; margin-top:28px;
-  opacity:0; animation:riseIn .8s .65s cubic-bezier(.16,1,.3,1) forwards;
-}
-@keyframes riseIn {
-  from { opacity:0; transform:translateY(18px) }
-  to   { opacity:1; transform:translateY(0) }
-}
+.hero-body { margin-top:16px; max-width:520px; opacity:0; animation:riseIn .8s .5s cubic-bezier(.16,1,.3,1) forwards; }
+.hero-body p { font-size:17px; color:var(--muted); line-height:1.65; }
+.hero-ctas { display:flex; gap:14px; flex-wrap:wrap; margin-top:28px; opacity:0; animation:riseIn .8s .65s cubic-bezier(.16,1,.3,1) forwards; }
+@keyframes riseIn { from { opacity:0; transform:translateY(18px) } to { opacity:1; transform:translateY(0) } }
 
 .card {
   background:rgba(10,10,14,0.88);
@@ -138,7 +122,6 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 .card-case { font-size:15px; font-weight:600; color:#fff; }
 .card-query { font-size:14px; line-height:1.5; color:var(--muted); margin-top:4px; }
 .card-line { height:1px; background:rgba(255,255,255,0.08); margin:14px 0 }
-
 .ev { display:flex; align-items:center; gap:10px; margin-bottom:9px }
 .ev-icon {
   width:18px; height:18px; border-radius:50%;
@@ -150,7 +133,6 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 .ev-bar { flex:1; height:3px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden }
 .ev-fill { height:100%; background:linear-gradient(90deg,var(--accent-dark),var(--accent-light)); border-radius:2px }
 .ev-score { font-family:var(--mono); font-size:11px; color:var(--muted); width:36px; text-align:right }
-
 .rank { display:flex; align-items:center; gap:10px; margin-bottom:7px; padding:5px 10px; border-radius:8px; border:1px solid transparent }
 .rank.on { background:rgba(168,85,247,0.08); border-color:rgba(168,85,247,0.25) }
 .rank-num {
@@ -165,261 +147,117 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 .rank-fill { height:100%; background:linear-gradient(90deg,var(--accent-dark),var(--accent-light)); border-radius:2px }
 .rank-score { font-family:var(--mono); font-size:12px; color:var(--muted); width:44px; text-align:right }
 .rank.on .rank-score { color:var(--accent-light); font-weight:600 }
-
 .interp { font-size:14px; line-height:1.6; color:var(--muted) }
-
 .audit-check {
-  margin-top:16px;
-  padding:14px 16px;
-  border-radius:10px;
-  border:1px solid rgba(168,85,247,0.25);
-  background:rgba(168,85,247,0.06);
+  margin-top:16px; padding:14px 16px; border-radius:10px;
+  border:1px solid rgba(168,85,247,0.25); background:rgba(168,85,247,0.06);
 }
-.audit-check-header {
-  font-family:var(--mono); font-size:10px; font-weight:500;
-  letter-spacing:.15em; text-transform:uppercase;
-  color:var(--accent-light); margin-bottom:10px;
-}
-.audit-check-row {
-  display:flex; align-items:center; justify-content:space-between;
-  font-size:13px; padding:6px 0;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-}
+.audit-check-header { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--accent-light); margin-bottom:10px; }
+.audit-check-row { display:flex; align-items:center; justify-content:space-between; font-size:13px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
 .audit-check-row:last-child { border-bottom:none; }
 .audit-check-label { color:var(--muted); }
 .audit-check-val { color:#fff; font-weight:500; }
 
-/* Debate / Resolution section styles */
-.resolution-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1px;
-  background:var(--line);
-  width:100%;
-  max-width:1000px;
-  margin-top:36px;
-}
-.res-cell {
-  background:var(--bg1);
-  padding:28px 24px;
-}
-.res-cell.wide { grid-column:1 / -1; }
-.res-header {
-  font-family:var(--mono); font-size:10px; font-weight:500;
-  letter-spacing:.2em; text-transform:uppercase;
-  color:var(--dim); margin-bottom:14px;
-}
-.mutation-list {
-  display:flex; flex-wrap:wrap; gap:8px;
-}
-.mutation-tag {
-  font-family:var(--mono); font-size:11px;
-  color:var(--muted);
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  padding:6px 12px; border-radius:6px;
-}
-.hyp-row {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-}
-.hyp-row:last-child { border-bottom:none; }
-.hyp-name { font-size:14px; color:var(--muted); }
-.hyp-name.rejected { text-decoration:line-through; opacity:0.5; }
-.hyp-score { font-family:var(--mono); font-size:12px; color:var(--dim); }
-.hyp-reason {
-  font-family:var(--mono); font-size:10px; color:var(--accent-light);
-  text-transform:uppercase; letter-spacing:.08em;
-  margin-top:4px;
-}
-.reject-badge {
-  display:inline-block;
-  font-family:var(--mono); font-size:9px; font-weight:500;
-  letter-spacing:.1em; text-transform:uppercase;
-  color:#ff6b6b;
-  border:1px solid rgba(255,107,107,0.3);
-  padding:2px 8px; border-radius:4px; margin-left:10px;
-}
-.insight-grid {
-  display:grid; grid-template-columns:repeat(2,1fr);
-  gap:1px; background:var(--line);
-  width:100%; max-width:1000px; margin-top:36px;
-}
-.insight-cell {
-  background:var(--bg1); padding:24px;
-  text-align:left;
-}
-.insight-cell p {
-  font-size:14px; line-height:1.6; color:var(--muted);
-}
-.insight-cell strong {
-  color:#fff; font-weight:600;
-}
-
-.k {
-  font-size:clamp(36px, 5.5vw, 76px);
-  font-weight:300; line-height:1.1; letter-spacing:-.03em;
-  color:#fff;
-}
+.k { font-size:clamp(36px, 5.5vw, 76px); font-weight:300; line-height:1.1; letter-spacing:-.03em; color:#fff; }
 .k-sm { font-size:clamp(28px, 3.5vw, 48px)!important; line-height:1.12!important }
-
-.eyebrow {
-  font-family:var(--mono); font-size:11px; color:var(--dim);
-  text-transform:uppercase; letter-spacing:.2em; margin-bottom:20px; display:block;
-}
-.body-text {
-  font-size:17px; color:var(--muted);
-  line-height:1.65; max-width:600px; margin-top:16px;
-}
-
-.btn-p {
-  display:inline-flex; align-items:center; gap:10px;
-  font-family:var(--mono); font-size:11px; font-weight:500;
-  letter-spacing:.14em; text-transform:uppercase;
-  background:#fff; color:#000; border:none;
-  padding:14px 28px; transition:all .2s;
-}
+.eyebrow { font-family:var(--mono); font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.2em; margin-bottom:20px; display:block; }
+.body-text { font-size:17px; color:var(--muted); line-height:1.65; max-width:640px; margin-top:16px; }
+.btn-p { display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; background:#fff; color:#000; border:none; padding:14px 28px; transition:all .2s; }
 .btn-p:hover { background:#e8e8e8; transform:translateY(-2px); }
-.btn-g {
-  display:inline-flex; align-items:center; gap:10px;
-  font-family:var(--mono); font-size:11px;
-  letter-spacing:.14em; text-transform:uppercase;
-  color:var(--muted); border:1px solid var(--line2);
-  background:transparent; padding:14px 28px; transition:all .2s;
-}
+.btn-g { display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line2); background:transparent; padding:14px 28px; transition:all .2s; }
 .btn-g:hover { color:#fff; border-color:#555; background:rgba(255,255,255,.03); }
-
-.rv {
-  opacity:0; transform:translateY(20px);
-  transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
-}
+.rv { opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
 .rv.in { opacity:1; transform:translateY(0) }
 .rv1 { transition-delay:.08s }
 .rv2 { transition-delay:.16s }
 .rv3 { transition-delay:.24s }
 
-.stat-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1px; background:var(--line); width:100%; max-width:640px; margin-top:36px;
-}
-.stat-cell {
-  background:var(--bg1); padding:28px 20px; text-align:center;
-}
-.stat-cell .n {
-  font-size:clamp(28px, 3.5vw, 40px); font-weight:300; color:var(--accent-light);
-  letter-spacing:-1px; line-height:1; margin-bottom:8px;
-}
-.stat-cell .l {
-  font-family:var(--mono); font-size:11px; color:var(--dim);
-  text-transform:uppercase; letter-spacing:.12em;
-}
+.stat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); width:100%; max-width:640px; margin-top:36px; }
+.stat-cell { background:var(--bg1); padding:28px 20px; text-align:center; }
+.stat-cell .n { font-size:clamp(28px, 3.5vw, 40px); font-weight:300; color:var(--accent-light); letter-spacing:-1px; line-height:1; margin-bottom:8px; }
+.stat-cell .l { font-family:var(--mono); font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.12em; }
+.problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); width:100%; max-width:860px; margin-top:36px; }
+.prob-card { background:var(--bg1); padding:32px 24px; text-align:center; }
+.prob-val { font-size:clamp(36px, 4vw, 48px); font-weight:300; color:var(--accent-light); line-height:1; margin-bottom:10px; letter-spacing:-1px; }
+.prob-lbl { font-size:15px; font-weight:600; color:#fff; margin-bottom:6px; }
+.prob-desc { font-size:14px; color:var(--muted); line-height:1.6; }
 
-.problem-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1px; background:var(--line); width:100%; max-width:860px; margin-top:36px;
+.resolution-wrap { width:100%; max-width:1180px; margin:36px auto 0; display:grid; grid-template-columns:.9fr 1.15fr; gap:18px; text-align:left; }
+.mutation-panel, .resolution-panel, .conflict-panel {
+  background:rgba(10,10,14,.86); border:1px solid rgba(255,255,255,.1); border-radius:16px; backdrop-filter:blur(20px); box-shadow:0 22px 60px rgba(0,0,0,.36);
 }
-.prob-card {
-  background:var(--bg1); padding:32px 24px; text-align:center;
-}
-.prob-val {
-  font-size:clamp(36px, 4vw, 48px); font-weight:300; color:var(--accent-light);
-  line-height:1; margin-bottom:10px; letter-spacing:-1px;
-}
-.prob-lbl {
-  font-size:15px; font-weight:600; color:#fff; margin-bottom:6px;
-}
-.prob-desc {
-  font-size:14px; color:var(--muted); line-height:1.6;
-}
+.mutation-panel { padding:24px; }
+.mutation-list { display:grid; gap:9px; margin-top:14px; }
+.mutation-list div { display:flex; justify-content:space-between; gap:16px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,.07); font-size:13px; color:var(--muted); line-height:1.35; }
+.mutation-list div:last-child { border-bottom:none; }
+.mutation-list strong { color:#fff; font-weight:500; }
+.mutation-list span { font-family:var(--mono); color:var(--dim); white-space:nowrap; }
+.resolution-panel { padding:24px; }
+.resolution-grid { display:grid; gap:12px; margin-top:14px; }
+.res-row { display:grid; grid-template-columns:24px 1fr auto; align-items:center; gap:12px; padding:13px 14px; border:1px solid rgba(255,255,255,.08); border-radius:10px; background:rgba(255,255,255,.02); }
+.res-row.top { border-color:rgba(168,85,247,.32); background:rgba(168,85,247,.08); }
+.res-idx { width:24px; height:24px; border-radius:50%; display:grid; place-items:center; font-family:var(--mono); font-size:11px; border:1px solid rgba(255,255,255,.18); color:var(--dim); }
+.res-row.top .res-idx { background:var(--accent); color:#fff; border-color:transparent; }
+.res-drug { color:#fff; font-size:14px; line-height:1.35; }
+.res-note { color:var(--dim); font-size:12px; margin-top:3px; }
+.res-score { font-family:var(--mono); color:var(--accent-light); font-size:14px; }
+.conflict-panel { margin-top:18px; padding:24px; grid-column:1/-1; }
+.conflict-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.08); margin-top:16px; }
+.conflict-card { background:var(--bg1); padding:20px; min-height:174px; }
+.conflict-kicker { font-family:var(--mono); color:var(--dim); font-size:10px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:12px; }
+.conflict-title { font-size:16px; color:#fff; font-weight:600; margin-bottom:10px; }
+.conflict-body { font-size:13px; color:var(--muted); line-height:1.55; }
+.conflict-status { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--reject); }
+.conflict-status.pass { color:var(--pass); }
+.dot { width:7px; height:7px; border-radius:50%; background:currentColor; }
+.audit-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,.08); margin-top:18px; border-radius:12px; overflow:hidden; }
+.audit-strip div { background:rgba(10,10,14,.92); padding:18px; text-align:center; }
+.audit-strip strong { display:block; color:#fff; font-size:19px; font-weight:500; margin-bottom:6px; }
+.audit-strip span { font-family:var(--mono); font-size:10px; color:var(--dim); text-transform:uppercase; letter-spacing:.12em; }
+.callout { margin:22px auto 0; max-width:820px; padding:18px 22px; border:1px solid rgba(168,85,247,.24); background:rgba(168,85,247,.055); color:var(--muted); font-size:15px; line-height:1.6; text-align:left; border-radius:14px; }
+.callout strong { color:#fff; font-weight:500; }
 
-.research-grid {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  gap:1px; background:var(--line); width:100%; max-width:1000px; margin-top:36px;
-}
-.res-card {
-  background:var(--bg1); padding:28px 22px;
-}
+.research-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); width:100%; max-width:1000px; margin-top:36px; }
+.res-card { background:var(--bg1); padding:28px 22px; }
 .res-icon { font-size:22px; margin-bottom:12px; }
 .res-title { font-size:15px; font-weight:600; color:#fff; margin-bottom:6px; }
 .res-desc { font-size:13px; color:var(--muted); line-height:1.5; }
-
-.team-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1px; background:var(--line); width:100%; max-width:800px; margin-top:36px;
-}
-.team-card {
-  background:var(--bg1); padding:36px 28px; text-align:center;
-}
-.team-avatar {
-  width:60px; height:60px; border-radius:50%;
-  background:linear-gradient(135deg,var(--accent-dark),var(--accent));
-  display:flex; align-items:center; justify-content:center;
-  font-size:18px; font-weight:700; color:#fff; margin:0 auto 16px;
-}
+.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); width:100%; max-width:800px; margin-top:36px; }
+.team-card { background:var(--bg1); padding:36px 28px; text-align:center; }
+.team-avatar { width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--accent-dark),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; color:#fff; margin:0 auto 16px; }
 .team-name { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; }
 .team-role { font-family:var(--mono); font-size:11px; color:var(--accent-light); margin-bottom:4px; }
 .team-area { font-family:var(--mono); font-size:10px; color:var(--dim); }
-
-.partner {
-  text-align:center; padding:100px 9vw;
-  background:linear-gradient(to bottom,transparent,rgba(168,85,247,0.02));
-}
-.partner h2 {
-  font-size:clamp(32px, 4vw, 48px); font-weight:300;
-  letter-spacing:-.02em; margin-bottom:12px; color:#fff;
-}
-.partner p {
-  font-size:17px; color:var(--muted); margin-bottom:32px;
-}
-
-.footer {
-  padding:48px 48px 32px; border-top:1px solid var(--line);
-}
-.footer-grid {
-  display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:40px; max-width:1200px; margin:0 auto;
-}
+.partner { text-align:center; padding:100px 9vw; background:linear-gradient(to bottom,transparent,rgba(168,85,247,0.02)); }
+.partner h2 { font-size:clamp(32px, 4vw, 48px); font-weight:300; letter-spacing:-.02em; margin-bottom:12px; color:#fff; }
+.partner p { font-size:17px; color:var(--muted); margin-bottom:32px; }
+.footer { padding:48px 48px 32px; border-top:1px solid var(--line); position:relative; z-index:10; background:#030303; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; max-width:1200px; margin:0 auto; }
 .footer-brand .nav-logo { margin-bottom:12px; }
-.footer-brand p {
-  font-size:14px; color:var(--muted); line-height:1.6; max-width:320px;
-}
-.footer-col h4 {
-  font-family:var(--mono); font-size:11px; font-weight:600;
-  letter-spacing:.15em; text-transform:uppercase;
-  color:var(--dim); margin-bottom:16px;
-}
-.footer-col a, .footer-col div {
-  display:block; font-size:14px;
-  color:var(--muted); text-decoration:none; margin-bottom:10px;
-  transition:color .2s;
-}
+.footer-brand p { font-size:14px; color:var(--muted); line-height:1.6; max-width:320px; }
+.footer-col h4 { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--dim); margin-bottom:16px; }
+.footer-col a, .footer-col div { display:block; font-size:14px; color:var(--muted); text-decoration:none; margin-bottom:10px; transition:color .2s; }
 .footer-col a:hover { color:#fff }
-.footer-bottom {
-  max-width:1200px; margin:32px auto 0; padding-top:20px;
-  border-top:1px solid var(--line);
-  display:flex; justify-content:space-between; align-items:center;
-}
+.footer-bottom { max-width:1200px; margin:32px auto 0; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
 .footer-bottom p { font-family:var(--mono); font-size:10px; color:var(--dim); }
 
 @media(max-width:1100px) {
   .hero-wrap { grid-template-columns:1fr; gap:40px; }
+  .resolution-wrap { grid-template-columns:1fr; }
+  .conflict-grid { grid-template-columns:1fr; }
   .research-grid { grid-template-columns:repeat(2,1fr); }
-  .resolution-grid { grid-template-columns:1fr; }
-  .insight-grid { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr 1fr; }
   .nav-links { display:none; }
 }
 @media(max-width:700px) {
-  .problem-grid, .team-grid { grid-template-columns:1fr; }
-  .stat-grid { grid-template-columns:1fr; }
+  .problem-grid, .team-grid, .stat-grid, .audit-strip { grid-template-columns:1fr; }
   .research-grid { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr; }
   .footer-bottom { flex-direction:column; gap:10px; text-align:center; }
   section { padding:80px 5vw 60px; }
   #hero { padding:80px 5vw 40px; }
+  #nav { padding:16px 32px; }
 }
-
 </style>
 <base target="_blank">
 </head>
@@ -434,11 +272,11 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   </div>
   <div class="nav-links">
     <a href="#validation">Validation</a>
-    <a href="#resolution">Resolution</a>
+    <a href="#resolution">Clinical Resolution</a>
     <a href="#discovery">Discovery</a>
     <a href="#research">Research</a>
     <a href="#team">Team</a>
-    <a class="nav-cta" href="mailto:info@arbiter.ai">Request Enterprise Audit API Access →</a>
+    <a class="nav-cta" href="mailto:joel@actualgeneralintelligence.com">Request Clinical Audit Access →</a>
   </div>
 </nav>
 
@@ -447,13 +285,13 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 <section id="hero">
   <div class="hero-wrap">
     <div class="hero-left">
-      <span class="hero-pre">First in Deterministic AI Validation</span>
-      <h1 class="hero-h">AI Therapeutics.<br>Mathematically Validated.</h1>
+      <span class="hero-pre">Deterministic Clinical Validation</span>
+      <h1 class="hero-h">AI Therapeutics.<br>Mathematically Audited.</h1>
       <div class="hero-body">
-        <p>The first organization to implement deterministic validation for AI-generated therapeutic recommendations. We don't trust AI. We verify it.</p>
+        <p>ARBITER validates machine-generated treatment recommendations against molecular profiles, clinical constraints, and mechanistic evidence. It does not trust AI. It audits it.</p>
       </div>
       <div class="hero-ctas">
-        <a class="btn-p" href="#validation">See How It Works →</a>
+        <a class="btn-p" href="#resolution">See Clinical Resolution →</a>
         <a class="btn-g" href="#partner">Partner With Us</a>
       </div>
     </div>
@@ -462,7 +300,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
       <div class="card">
         <div class="card-sec">
           <div class="card-label">Case Profile</div>
-          <div class="card-case">GBM / TERT+ / TP53- / EGFR amp</div>
+          <div class="card-case">GBM / TERT+ / TP53- / RB1- / PTEN loss / RTK amp</div>
         </div>
         <div class="card-sec">
           <div class="card-label">Query</div>
@@ -472,10 +310,10 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
         <div class="card-sec">
           <div class="card-label">Evidence Considered</div>
           <div class="ev"><div class="ev-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#a855f7" stroke-width="1.5"><circle cx="6" cy="6" r="4.5"/><circle cx="6" cy="6" r="1.8" fill="#a855f7"/></svg></div><div class="ev-name">Mechanism Alignment</div><div class="ev-bar"><div class="ev-fill" style="width:92%"></div></div><div class="ev-score">0.92</div></div>
-          <div class="ev"><div class="ev-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1.5v5l3 2"/></svg></div><div class="ev-name">Clinical Efficacy</div><div class="ev-bar"><div class="ev-fill" style="width:88%"></div></div><div class="ev-score">0.88</div></div>
+          <div class="ev"><div class="ev-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1.5v5l3 2"/></svg></div><div class="ev-name">Clinical Evidence</div><div class="ev-bar"><div class="ev-fill" style="width:88%"></div></div><div class="ev-score">0.88</div></div>
           <div class="ev"><div class="ev-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round"><path d="M1.5 6h9M6 1.5v9"/></svg></div><div class="ev-name">Resistance Profile</div><div class="ev-bar"><div class="ev-fill" style="width:84%"></div></div><div class="ev-score">0.84</div></div>
           <div class="ev"><div class="ev-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7V4M6 9.5h.01"/></svg></div><div class="ev-name">Safety / Tolerability</div><div class="ev-bar"><div class="ev-fill" style="width:79%"></div></div><div class="ev-score">0.79</div></div>
-          <div class="ev"><div class="ev-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="3.5" width="9" height="6" rx="1.5"/><path d="M4 3.5V2.5a2 2 0 014 0v1"/></svg></div><div class="ev-name">Treatment Line Context</div><div class="ev-bar"><div class="ev-fill" style="width:76%"></div></div><div class="ev-score">0.76</div></div>
+          <div class="ev"><div class="ev-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="3.5" width="9" height="6" rx="1.5"/><path d="M4 3.5V2.5a2 2 0 014 0v1"/></svg></div><div class="ev-name">Treatment Context</div><div class="ev-bar"><div class="ev-fill" style="width:76%"></div></div><div class="ev-score">0.76</div></div>
         </div>
         <div class="card-line"></div>
         <div class="card-sec">
@@ -505,7 +343,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 <section class="center" id="validation">
   <span class="eyebrow rv">Live Validation</span>
   <h2 class="k k-sm rv rv1">Every recommendation scored.<br>Every score explainable.</h2>
-  <p class="body-text rv rv2">AI hallucinates. LLMs recommend drugs that contraindicate. We implemented a validation layer that catches what black-box models miss. Deterministic. Sub-second. No cloud dependency.</p>
+  <p class="body-text rv rv2">AI hallucinates. LLMs recommend therapies that may contradict molecular context. ARBITER creates a deterministic validation layer that catches what black-box models miss.</p>
   <div class="stat-grid rv rv2">
     <div class="stat-cell"><div class="n">&lt;1s</div><div class="l">Validation</div></div>
     <div class="stat-cell"><div class="n">100%</div><div class="l">Deterministic</div></div>
@@ -515,92 +353,76 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 
 <section class="center" id="resolution">
   <span class="eyebrow rv">Deterministic Clinical Resolution</span>
-  <h2 class="k k-sm rv rv1">Disagreement collapses<br>into truth.</h2>
-  <p class="body-text rv rv2">Conflicting hypotheses evaluated and resolved in real time. ARBITER doesn't just generate answers—it eliminates wrong ones.</p>
+  <h2 class="k k-sm rv rv1">Conflicting hypotheses.<br>Resolved into one auditable outcome.</h2>
+  <p class="body-text rv rv2">A GBM mutation profile was evaluated through competing clinical interpretations. Unsupported paths were downgraded. Mechanistically coherent options converged into a ranked regimen.</p>
 
-  <div class="resolution-grid rv rv2">
-    <div class="res-cell wide">
-      <div class="res-header">Input Mutation Profile</div>
+  <div class="resolution-wrap rv rv2">
+    <div class="mutation-panel">
+      <div class="card-label">Mutation Profile</div>
       <div class="mutation-list">
-        <span class="mutation-tag">TERT promoter c.-124C>T</span>
-        <span class="mutation-tag">RB1 R251* LOF</span>
-        <span class="mutation-tag">TP53 splice LOF</span>
-        <span class="mutation-tag">MDM4 amp >9x</span>
-        <span class="mutation-tag">KIT / PDGFRA / KDR amp</span>
-        <span class="mutation-tag">VEGFR1 high expr</span>
-        <span class="mutation-tag">PIK3C2B amp</span>
-        <span class="mutation-tag">PTEN focal del</span>
-        <span class="mutation-tag">BRCA2 R2973H VUS</span>
+        <div><strong>TERT promoter mutation</strong><span>VAF 50.9%</span></div>
+        <div><strong>RB1 loss-of-function + LOH</strong><span>VAF 93.1%</span></div>
+        <div><strong>TP53 splice-site LOF + LOH</strong><span>VAF 83.5%</span></div>
+        <div><strong>MDM4 high-level amplification</strong><span>&gt;9 copies</span></div>
+        <div><strong>KIT / PDGFRA / KDR co-amplification</strong><span>+2 copies</span></div>
+        <div><strong>High VEGFR1 expression</strong><span>RTK axis</span></div>
+        <div><strong>BRCA2 R2973H</strong><span>VUS</span></div>
+        <div><strong>PIK3C2B amplification</strong><span>PI3K axis</span></div>
+        <div><strong>PTEN focal deletion</strong><span>CNV loss</span></div>
       </div>
     </div>
 
-    <div class="res-cell">
-      <div class="res-header">Hypothesis Divergence</div>
-      <div class="hyp-row">
-        <div>
-          <div class="hyp-name">PARP inhibitors viable <span class="reject-badge">Rejected</span></div>
-          <div class="hyp-reason">BRCA2 variant non-functional</div>
-        </div>
-        <div class="hyp-score">0.12</div>
+    <div class="resolution-panel">
+      <div class="card-label">Final Coherence Ranking</div>
+      <div class="resolution-grid">
+        <div class="res-row top"><div class="res-idx">1</div><div><div class="res-drug">Temozolomide + Regorafenib</div><div class="res-note">DNA damage + RTK / angiogenesis inhibition</div></div><div class="res-score">0.847</div></div>
+        <div class="res-row"><div class="res-idx">2</div><div><div class="res-drug">Temozolomide + Tumor Treating Fields</div><div class="res-note">Standard GBM adjunct with phase III support</div></div><div class="res-score">0.812</div></div>
+        <div class="res-row"><div class="res-idx">3</div><div><div class="res-drug">Temozolomide + Disulfiram + Copper</div><div class="res-note">Repurposed sensitization candidate</div></div><div class="res-score">0.744</div></div>
+        <div class="res-row"><div class="res-idx">4</div><div><div class="res-drug">Lenvatinib + Temozolomide</div><div class="res-note">Multi-kinase coverage; limited clinical data</div></div><div class="res-score">0.691</div></div>
+        <div class="res-row"><div class="res-idx">5</div><div><div class="res-drug">Bevacizumab</div><div class="res-note">Alternative for recurrence or intolerance</div></div><div class="res-score">0.634</div></div>
       </div>
-      <div class="hyp-row">
-        <div>
-          <div class="hyp-name">MDM4 targeting <span class="reject-badge">Rejected</span></div>
-          <div class="hyp-reason">TP53 inactive — pathway non-actionable</div>
-        </div>
-        <div class="hyp-score">0.09</div>
-      </div>
-      <div class="hyp-row">
-        <div>
-          <div class="hyp-name">mTOR monotherapy</div>
-          <div class="hyp-reason">Limited CNS penetration</div>
-        </div>
-        <div class="hyp-score">0.33</div>
-      </div>
-      <div class="hyp-row">
-        <div>
-          <div class="hyp-name">Multi-kinase inhibition</div>
-          <div class="hyp-reason">Matches KIT/PDGFRA/KDR amp</div>
-        </div>
-        <div class="hyp-score">0.71</div>
+      <div class="audit-strip">
+        <div><strong>Yes</strong><span>Deterministic Pass</span></div>
+        <div><strong>None</strong><span>Contradictions Found</span></div>
+        <div><strong>0.847</strong><span>Top Score</span></div>
+        <div><strong>&lt;1s</strong><span>Resolution Time</span></div>
       </div>
     </div>
 
-    <div class="res-cell">
-      <div class="res-header">Convergence Output</div>
-      <div class="rank on" style="margin-bottom:8px;"><div class="rank-num">1</div><div class="rank-name">Temozolomide + Regorafenib</div><div class="rank-bar"><div class="rank-fill" style="width:100%"></div></div><div class="rank-score">0.847</div></div>
-      <div class="rank" style="margin-bottom:8px;"><div class="rank-num">2</div><div class="rank-name">Bevacizumab monotherapy</div><div class="rank-bar"><div class="rank-fill" style="width:75%"></div></div><div class="rank-score">0.634</div></div>
-      <div class="rank" style="margin-bottom:8px;"><div class="rank-num">3</div><div class="rank-name">Lomustine standard</div><div class="rank-bar"><div class="rank-fill" style="width:62%"></div></div><div class="rank-score">0.521</div></div>
-      <div class="rank"><div class="rank-num">4</div><div class="rank-name">Cetuximab combination</div><div class="rank-bar"><div class="rank-fill" style="width:37%"></div></div><div class="rank-score">0.312</div></div>
-    </div>
-
-    <div class="res-cell wide">
-      <div class="audit-check" style="margin-top:0;">
-        <div class="audit-check-header">Audit Check</div>
-        <div class="audit-check-row"><span class="audit-check-label">Deterministic Pass</span><span class="audit-check-val">Yes</span></div>
-        <div class="audit-check-row"><span class="audit-check-label">Contradictions Found</span><span class="audit-check-val">None</span></div>
-        <div class="audit-check-row"><span class="audit-check-label">Confidence Score</span><span class="audit-check-val">0.847</span></div>
-        <div class="audit-check-row"><span class="audit-check-label">Validation Time</span><span class="audit-check-val">&lt; 1s</span></div>
+    <div class="conflict-panel">
+      <div class="card-label">Hypothesis Divergence</div>
+      <div class="conflict-grid">
+        <div class="conflict-card">
+          <div class="conflict-kicker">Rejected Path</div>
+          <div class="conflict-title">PARP inhibitor assumption</div>
+          <div class="conflict-body">BRCA2 R2973H was downgraded because the variant is missense / uncertain significance, not established homologous recombination deficiency.</div>
+          <div class="conflict-status"><span class="dot"></span>Excluded</div>
+        </div>
+        <div class="conflict-card">
+          <div class="conflict-kicker">Rejected Path</div>
+          <div class="conflict-title">MDM4 targeting</div>
+          <div class="conflict-body">MDM4 amplification was not treated as actionable because TP53 is already loss-of-function with LOH, weakening p53-reactivation logic.</div>
+          <div class="conflict-status"><span class="dot"></span>Invalidated</div>
+        </div>
+        <div class="conflict-card">
+          <div class="conflict-kicker">Converged Path</div>
+          <div class="conflict-title">RTK + DNA damage strategy</div>
+          <div class="conflict-body">KIT / PDGFRA / KDR amplification, VEGFR expression, and GBM evidence converged on a multi-kinase + standard backbone recommendation.</div>
+          <div class="conflict-status pass"><span class="dot"></span>Resolved</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="insight-grid rv rv3">
-    <div class="insight-cell">
-      <p><strong>PARP inhibitors excluded.</strong> BRCA2 R2973H is a missense variant of uncertain significance. No functional evidence of homologous recombination deficiency.</p>
-    </div>
-    <div class="insight-cell">
-      <p><strong>MDM4 targeting invalidated.</strong> TP53 is inactivated by splice-site mutation with LOH. MDM2/MDM4 inhibitors require wildtype p53 for efficacy.</p>
-    </div>
-  </div>
+  <div class="callout rv rv3"><strong>The system does not just generate answers.</strong> It removes unsupported recommendations, preserves caveats, and resolves disagreement into an auditable clinical ranking.</div>
 </section>
 
 <section class="center" id="discovery" style="background:linear-gradient(to bottom,transparent,rgba(168,85,247,0.02));">
   <span class="eyebrow rv">Pathway Discovery</span>
   <h2 class="k k-sm rv rv1">Not just validation.<br>Discovery.</h2>
-  <p class="body-text rv rv2">In validation testing, ARBITER independently identified a billion-dollar drug pathway — without training data, in under one second.</p>
+  <p class="body-text rv rv2">In validation testing, ARBITER independently identified a high-value therapeutic pathway without training data, historical examples, or model fine-tuning.</p>
   <div class="body-text rv rv3" style="max-width:680px;">
-    <p>Our deterministic validation engine doesn't just check existing recommendations. By mapping the full semantic coherence space between molecular targets and therapeutic mechanisms, ARBITER surfaces novel pathways that traditional screening misses.</p>
+    <p>By mapping the coherence space between molecular targets, tumor biology, and therapeutic mechanisms, ARBITER can surface pathways that ordinary black-box recommendation systems miss.</p>
     <p style="margin-top:16px;color:var(--dim);">No training data. No historical examples. Pure semantic coherence.</p>
   </div>
 </section>
@@ -610,49 +432,21 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   <h2 class="k k-sm rv rv1">AI recommends.<br>But does it know?</h2>
   <p class="body-text rv rv2">The more confident the model, the more dangerous the hallucination.</p>
   <div class="problem-grid rv rv2">
-    <div class="prob-card">
-      <div class="prob-val">73%</div>
-      <div class="prob-lbl">Unverified</div>
-      <div class="prob-desc">Of AI-generated oncology recommendations lack molecular validation.</div>
-    </div>
-    <div class="prob-card">
-      <div class="prob-val">14mo</div>
-      <div class="prob-lbl">GBM Survival</div>
-      <div class="prob-desc">Every week on suboptimal treatment reduces patient outcomes.</div>
-    </div>
-    <div class="prob-card">
-      <div class="prob-val">∞</div>
-      <div class="prob-lbl">Black Box</div>
-      <div class="prob-desc">LLMs cannot explain why. No mathematical basis. Just confidence.</div>
-    </div>
+    <div class="prob-card"><div class="prob-val">73%</div><div class="prob-lbl">Unverified</div><div class="prob-desc">AI-generated oncology recommendations can lack validation against molecular profiles and clinical constraints.</div></div>
+    <div class="prob-card"><div class="prob-val">14mo</div><div class="prob-lbl">GBM Survival</div><div class="prob-desc">High-stakes treatment selection requires fast, explainable review of mechanistic fit.</div></div>
+    <div class="prob-card"><div class="prob-val">∞</div><div class="prob-lbl">Black Box</div><div class="prob-desc">LLMs cannot reliably explain why. No deterministic audit trail. Just confidence.</div></div>
   </div>
 </section>
 
 <section class="center" id="research">
   <span class="eyebrow rv">Research Focus</span>
-  <h2 class="k k-sm rv rv1">Deterministic validation<br>for clinical decisions.</h2>
-  <p class="body-text rv rv2">Our research spans oncology, immunology, neurological disorders, and computational biology — now validated with deterministic AI.</p>
+  <h2 class="k k-sm rv rv1">Clinical coherence scoring<br>across domains.</h2>
+  <p class="body-text rv rv2">ARBITER applies deterministic validation across oncology, immunology, neurological disease, and computational biology.</p>
   <div class="research-grid rv rv2">
-    <div class="res-card">
-      <div class="res-icon">🧬</div>
-      <div class="res-title">Oncology</div>
-      <div class="res-desc">GBM, NSCLC, TNBC therapeutic validation</div>
-    </div>
-    <div class="res-card">
-      <div class="res-icon">🧠</div>
-      <div class="res-title">Neurological</div>
-      <div class="res-desc">Brain cancer research & treatment</div>
-    </div>
-    <div class="res-card">
-      <div class="res-icon">🛡️</div>
-      <div class="res-title">Immunology</div>
-      <div class="res-desc">Immunotherapy approaches to glioma</div>
-    </div>
-    <div class="res-card">
-      <div class="res-icon">🔬</div>
-      <div class="res-title">Computational</div>
-      <div class="res-desc">AI-driven drug discovery & validation</div>
-    </div>
+    <div class="res-card"><div class="res-icon">🧬</div><div class="res-title">Oncology</div><div class="res-desc">GBM, NSCLC, TNBC therapeutic validation</div></div>
+    <div class="res-card"><div class="res-icon">🧠</div><div class="res-title">Neurological</div><div class="res-desc">Brain cancer research and treatment context</div></div>
+    <div class="res-card"><div class="res-icon">🛡️</div><div class="res-title">Immunology</div><div class="res-desc">Immunotherapy approaches and tumor immune context</div></div>
+    <div class="res-card"><div class="res-icon">🔬</div><div class="res-title">Computational</div><div class="res-desc">AI-driven drug discovery and validation</div></div>
   </div>
 </section>
 
@@ -661,31 +455,16 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   <h2 class="k k-sm rv rv1">Research-driven<br>team.</h2>
   <p class="body-text rv rv2">PhDs, MDs, and AI specialists working at the intersection of computational biology and precision medicine.</p>
   <div class="team-grid rv rv2">
-    <div class="team-card">
-      <div class="team-avatar">SK</div>
-      <div class="team-name">Santosh Kesari, MD, PhD</div>
-      <div class="team-role">Advisor</div>
-      <div class="team-area">Neuro-Oncology</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">AM</div>
-      <div class="team-name">Alexandre Matov, Ph.D.</div>
-      <div class="team-role">Advisor</div>
-      <div class="team-area">Computational Biology</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">BM</div>
-      <div class="team-name">Boris Minev, M.D.</div>
-      <div class="team-role">Advisor</div>
-      <div class="team-area">Precision Medicine</div>
-    </div>
+    <div class="team-card"><div class="team-avatar">SK</div><div class="team-name">Santosh Kesari, MD, PhD</div><div class="team-role">Advisor</div><div class="team-area">Neuro-Oncology</div></div>
+    <div class="team-card"><div class="team-avatar">AM</div><div class="team-name">Alexandre Matov, Ph.D.</div><div class="team-role">Advisor</div><div class="team-area">Computational Biology</div></div>
+    <div class="team-card"><div class="team-avatar">BM</div><div class="team-name">Boris Minev, M.D.</div><div class="team-role">Advisor</div><div class="team-area">Precision Medicine</div></div>
   </div>
 </section>
 
 <section class="partner" id="partner">
   <h2>Partner with us.</h2>
   <p>Research collaborations, clinical partnerships, and institutional inquiries.</p>
-  <a class="btn-p" href="mailto:info@arbiter.ai">Contact Our Team →</a>
+  <a class="btn-p" href="mailto:joel@actualgeneralintelligence.com">Contact Our Team →</a>
 </section>
 
 </div>
@@ -697,31 +476,13 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
         <svg viewBox="0 0 32 32" fill="none"><path d="M16 1L20 13L31 16L20 19L16 31L12 19L1 16L12 13L16 1Z" fill="#fff"/><circle cx="16" cy="16" r="3.5" fill="#030303"/></svg>
         ARBITER
       </div>
-      <p>Pioneering deterministic validation for AI-driven precision medicine. San Diego, CA.</p>
+      <p>Deterministic validation infrastructure for AI-driven precision medicine. San Diego, CA.</p>
     </div>
-    <div class="footer-col">
-      <h4>Platform</h4>
-      <a href="#validation">Validation</a>
-      <a href="#resolution">Resolution</a>
-      <a href="#discovery">Discovery</a>
-      <a href="#research">Research</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="#team">Team</a>
-      <a href="#partner">Partner With Us</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <a href="mailto:info@arbiter.ai">info@arbiter.ai</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Twitter</a>
-    </div>
+    <div class="footer-col"><h4>Platform</h4><a href="#validation">Validation</a><a href="#resolution">Clinical Resolution</a><a href="#discovery">Discovery</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="#team">Team</a><a href="#partner">Partner With Us</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:joel@actualgeneralintelligence.com">joel@actualgeneralintelligence.com</a></div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2025 ARBITER. All rights reserved.</p>
-    <p>Transforming Hope into Cure™</p>
-  </div>
+  <div class="footer-bottom"><p>© 2025 ARBITER. All rights reserved.</p><p>Deterministic systems. Trusted outcomes.</p></div>
 </div>
 
 <script>
