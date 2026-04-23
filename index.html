@@ -30,7 +30,7 @@ a { color:inherit; text-decoration:none }
 
 #bg {
   position:fixed; inset:0; z-index:0;
-  background:url('tumor.png') no-repeat center center;
+  background:url('tumor.jpg') no-repeat center center;
   background-size:cover;
 }
 #bg::after {
@@ -189,6 +189,74 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 .audit-check-label { color:var(--muted); }
 .audit-check-val { color:#fff; font-weight:500; }
 
+/* Debate / Resolution section styles */
+.resolution-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--line);
+  width:100%;
+  max-width:1000px;
+  margin-top:36px;
+}
+.res-cell {
+  background:var(--bg1);
+  padding:28px 24px;
+}
+.res-cell.wide { grid-column:1 / -1; }
+.res-header {
+  font-family:var(--mono); font-size:10px; font-weight:500;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--dim); margin-bottom:14px;
+}
+.mutation-list {
+  display:flex; flex-wrap:wrap; gap:8px;
+}
+.mutation-tag {
+  font-family:var(--mono); font-size:11px;
+  color:var(--muted);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:6px 12px; border-radius:6px;
+}
+.hyp-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.hyp-row:last-child { border-bottom:none; }
+.hyp-name { font-size:14px; color:var(--muted); }
+.hyp-name.rejected { text-decoration:line-through; opacity:0.5; }
+.hyp-score { font-family:var(--mono); font-size:12px; color:var(--dim); }
+.hyp-reason {
+  font-family:var(--mono); font-size:10px; color:var(--accent-light);
+  text-transform:uppercase; letter-spacing:.08em;
+  margin-top:4px;
+}
+.reject-badge {
+  display:inline-block;
+  font-family:var(--mono); font-size:9px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:#ff6b6b;
+  border:1px solid rgba(255,107,107,0.3);
+  padding:2px 8px; border-radius:4px; margin-left:10px;
+}
+.insight-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:1px; background:var(--line);
+  width:100%; max-width:1000px; margin-top:36px;
+}
+.insight-cell {
+  background:var(--bg1); padding:24px;
+  text-align:left;
+}
+.insight-cell p {
+  font-size:14px; line-height:1.6; color:var(--muted);
+}
+.insight-cell strong {
+  color:#fff; font-weight:600;
+}
+
 .k {
   font-size:clamp(36px, 5.5vw, 76px);
   font-weight:300; line-height:1.1; letter-spacing:-.03em;
@@ -337,6 +405,8 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 @media(max-width:1100px) {
   .hero-wrap { grid-template-columns:1fr; gap:40px; }
   .research-grid { grid-template-columns:repeat(2,1fr); }
+  .resolution-grid { grid-template-columns:1fr; }
+  .insight-grid { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr 1fr; }
   .nav-links { display:none; }
 }
@@ -364,11 +434,11 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   </div>
   <div class="nav-links">
     <a href="#validation">Validation</a>
+    <a href="#resolution">Resolution</a>
     <a href="#discovery">Discovery</a>
     <a href="#research">Research</a>
     <a href="#team">Team</a>
-    <a href="#partner">Partner With Us</a>
-    <a class="nav-cta" href="mailto:joel@actualgeneralintelligence.com">Request Enterprise Audit API Access →</a>
+    <a class="nav-cta" href="mailto:info@arbiter.ai">Request Enterprise Audit API Access →</a>
   </div>
 </nav>
 
@@ -443,6 +513,88 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   </div>
 </section>
 
+<section class="center" id="resolution">
+  <span class="eyebrow rv">Deterministic Clinical Resolution</span>
+  <h2 class="k k-sm rv rv1">Disagreement collapses<br>into truth.</h2>
+  <p class="body-text rv rv2">Conflicting hypotheses evaluated and resolved in real time. ARBITER doesn't just generate answers—it eliminates wrong ones.</p>
+
+  <div class="resolution-grid rv rv2">
+    <div class="res-cell wide">
+      <div class="res-header">Input Mutation Profile</div>
+      <div class="mutation-list">
+        <span class="mutation-tag">TERT promoter c.-124C>T</span>
+        <span class="mutation-tag">RB1 R251* LOF</span>
+        <span class="mutation-tag">TP53 splice LOF</span>
+        <span class="mutation-tag">MDM4 amp >9x</span>
+        <span class="mutation-tag">KIT / PDGFRA / KDR amp</span>
+        <span class="mutation-tag">VEGFR1 high expr</span>
+        <span class="mutation-tag">PIK3C2B amp</span>
+        <span class="mutation-tag">PTEN focal del</span>
+        <span class="mutation-tag">BRCA2 R2973H VUS</span>
+      </div>
+    </div>
+
+    <div class="res-cell">
+      <div class="res-header">Hypothesis Divergence</div>
+      <div class="hyp-row">
+        <div>
+          <div class="hyp-name">PARP inhibitors viable <span class="reject-badge">Rejected</span></div>
+          <div class="hyp-reason">BRCA2 variant non-functional</div>
+        </div>
+        <div class="hyp-score">0.12</div>
+      </div>
+      <div class="hyp-row">
+        <div>
+          <div class="hyp-name">MDM4 targeting <span class="reject-badge">Rejected</span></div>
+          <div class="hyp-reason">TP53 inactive — pathway non-actionable</div>
+        </div>
+        <div class="hyp-score">0.09</div>
+      </div>
+      <div class="hyp-row">
+        <div>
+          <div class="hyp-name">mTOR monotherapy</div>
+          <div class="hyp-reason">Limited CNS penetration</div>
+        </div>
+        <div class="hyp-score">0.33</div>
+      </div>
+      <div class="hyp-row">
+        <div>
+          <div class="hyp-name">Multi-kinase inhibition</div>
+          <div class="hyp-reason">Matches KIT/PDGFRA/KDR amp</div>
+        </div>
+        <div class="hyp-score">0.71</div>
+      </div>
+    </div>
+
+    <div class="res-cell">
+      <div class="res-header">Convergence Output</div>
+      <div class="rank on" style="margin-bottom:8px;"><div class="rank-num">1</div><div class="rank-name">Temozolomide + Regorafenib</div><div class="rank-bar"><div class="rank-fill" style="width:100%"></div></div><div class="rank-score">0.847</div></div>
+      <div class="rank" style="margin-bottom:8px;"><div class="rank-num">2</div><div class="rank-name">Bevacizumab monotherapy</div><div class="rank-bar"><div class="rank-fill" style="width:75%"></div></div><div class="rank-score">0.634</div></div>
+      <div class="rank" style="margin-bottom:8px;"><div class="rank-num">3</div><div class="rank-name">Lomustine standard</div><div class="rank-bar"><div class="rank-fill" style="width:62%"></div></div><div class="rank-score">0.521</div></div>
+      <div class="rank"><div class="rank-num">4</div><div class="rank-name">Cetuximab combination</div><div class="rank-bar"><div class="rank-fill" style="width:37%"></div></div><div class="rank-score">0.312</div></div>
+    </div>
+
+    <div class="res-cell wide">
+      <div class="audit-check" style="margin-top:0;">
+        <div class="audit-check-header">Audit Check</div>
+        <div class="audit-check-row"><span class="audit-check-label">Deterministic Pass</span><span class="audit-check-val">Yes</span></div>
+        <div class="audit-check-row"><span class="audit-check-label">Contradictions Found</span><span class="audit-check-val">None</span></div>
+        <div class="audit-check-row"><span class="audit-check-label">Confidence Score</span><span class="audit-check-val">0.847</span></div>
+        <div class="audit-check-row"><span class="audit-check-label">Validation Time</span><span class="audit-check-val">&lt; 1s</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-grid rv rv3">
+    <div class="insight-cell">
+      <p><strong>PARP inhibitors excluded.</strong> BRCA2 R2973H is a missense variant of uncertain significance. No functional evidence of homologous recombination deficiency.</p>
+    </div>
+    <div class="insight-cell">
+      <p><strong>MDM4 targeting invalidated.</strong> TP53 is inactivated by splice-site mutation with LOH. MDM2/MDM4 inhibitors require wildtype p53 for efficacy.</p>
+    </div>
+  </div>
+</section>
+
 <section class="center" id="discovery" style="background:linear-gradient(to bottom,transparent,rgba(168,85,247,0.02));">
   <span class="eyebrow rv">Pathway Discovery</span>
   <h2 class="k k-sm rv rv1">Not just validation.<br>Discovery.</h2>
@@ -461,7 +613,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
     <div class="prob-card">
       <div class="prob-val">73%</div>
       <div class="prob-lbl">Unverified</div>
-      <div class="prob-desc">AI-generated drug recommendations lack validation against molecular profiles.</div>
+      <div class="prob-desc">Of AI-generated oncology recommendations lack molecular validation.</div>
     </div>
     <div class="prob-card">
       <div class="prob-val">14mo</div>
@@ -478,7 +630,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 
 <section class="center" id="research">
   <span class="eyebrow rv">Research Focus</span>
-  <h2 class="k k-sm rv rv1">Precision medicine<br>across domains.</h2>
+  <h2 class="k k-sm rv rv1">Deterministic validation<br>for clinical decisions.</h2>
   <p class="body-text rv rv2">Our research spans oncology, immunology, neurological disorders, and computational biology — now validated with deterministic AI.</p>
   <div class="research-grid rv rv2">
     <div class="res-card">
@@ -533,7 +685,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 <section class="partner" id="partner">
   <h2>Partner with us.</h2>
   <p>Research collaborations, clinical partnerships, and institutional inquiries.</p>
-  <a class="btn-p" href="mailto:joel@actualgeneralintelligence.com">Contact Our Team →</a>
+  <a class="btn-p" href="mailto:info@arbiter.ai">Contact Our Team →</a>
 </section>
 
 </div>
@@ -550,6 +702,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
     <div class="footer-col">
       <h4>Platform</h4>
       <a href="#validation">Validation</a>
+      <a href="#resolution">Resolution</a>
       <a href="#discovery">Discovery</a>
       <a href="#research">Research</a>
     </div>
@@ -560,12 +713,14 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <a href="mailto:joel@actualgeneralintelligence.com">joel@actualgeneralintelligence.com</a>
+      <a href="mailto:info@arbiter.ai">info@arbiter.ai</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Twitter</a>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 ARBITER. All rights reserved.</p>
-    <p>Deterministic systems. Trusted outcomes.</p>
+    <p>Transforming Hope into Cure™</p>
   </div>
 </div>
 
