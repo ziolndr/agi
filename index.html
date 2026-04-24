@@ -246,7 +246,25 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 .footer-col h4 { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--dim); margin-bottom:16px; }
 .footer-col a, .footer-col div { display:block; font-size:14px; color:var(--muted); text-decoration:none; margin-bottom:10px; transition:color .2s; }
 .footer-col a:hover { color:#fff }
-.footer-bottom { max-width:1200px; margin:32px auto 0; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
+.footer-bottom {
+  max-width:1200px;
+  margin:28px auto 0;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  opacity:.7;
+}
+.footer-bottom p {
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--quiet);
+  letter-spacing:.08em;
+}
+.footer-bottom p:last-child {
+  text-align:right;
+}
 .footer-bottom p { font-family:var(--mono); font-size:10px; color:var(--dim); }
 
 @media(max-width:1100px) {
@@ -281,6 +299,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   <div class="nav-links">
     <a href="#validation">Validation</a>
     <a href="#resolution">Clinical Resolution</a>
+    <a href="#nsclc">NSCLC Divergence</a>
     <a href="#discovery">Discovery</a>
     <a href="#research">Research</a>
     <a href="#team">Team</a>
@@ -425,6 +444,66 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   <div class="callout rv rv3"><strong>The system does not predict. It computes.</div>
 </section>
 
+<section class="center" id="nsclc">
+  <span class="eyebrow rv">Case Profile — EGFR-mutant NSCLC with clonal tumor suppressor loss</span>
+  <h2 class="k k-sm rv rv1">Same engine.<br>Different biology.</h2>
+  <p class="body-text rv rv2">The NSCLC case shows ARBITER resolving a harder divergence: guideline-default EGFR targeting versus a co-mutation profile dominated by clonal checkpoint collapse and pre-existing resistance reservoirs.</p>
+
+  <div class="resolution-wrap rv rv2">
+    <div class="mutation-panel">
+      <div class="card-label">Mutation Profile</div>
+      <div class="mutation-list">
+        <div><strong>EGFR L858R</strong><span>Driver axis</span></div>
+        <div><strong>TP53 alteration</strong><span>Clonal / &gt;95% VAF</span></div>
+        <div><strong>RB1 alteration</strong><span>Clonal / &gt;95% VAF</span></div>
+        <div><strong>KRAS G12D</strong><span>Subclonal reservoir</span></div>
+        <div><strong>MAPK1 amplification</strong><span>TKI escape axis</span></div>
+      </div>
+    </div>
+
+    <div class="resolution-panel">
+      <div class="card-label">Divergence Ranking</div>
+      <div class="resolution-grid">
+        <div class="res-row top"><div class="res-idx">1</div><div><div class="res-drug">Paclitaxel</div><div class="res-note">Mitotic catastrophe vulnerability from clonal TP53 / RB1 loss</div></div><div class="res-score">Top</div></div>
+        <div class="res-row"><div class="res-idx">2</div><div><div class="res-drug">Checkpoint-exploiting cytotoxic class</div><div class="res-note">Mechanism-aligned with clonal tumor suppressor collapse</div></div><div class="res-score">High</div></div>
+        <div class="res-row"><div class="res-idx">12</div><div><div class="res-drug">Osimertinib</div><div class="res-note">Guideline-default EGFR option downgraded by co-mutation profile</div></div><div class="res-score">Downranked</div></div>
+      </div>
+      <div class="audit-strip">
+        <div><strong>Yes</strong><span>Deterministic Pass</span></div>
+        <div><strong>Visible</strong><span>Reasoning Trace</span></div>
+        <div><strong>Profile</strong><span>Specific Ranking</span></div>
+        <div><strong>Review</strong><span>Clinician Advised</span></div>
+      </div>
+    </div>
+
+    <div class="conflict-panel">
+      <div class="card-label">Reasoning Trace</div>
+      <div class="conflict-grid">
+        <div class="conflict-card">
+          <div class="conflict-kicker">Dominant Axis</div>
+          <div class="conflict-title">Clonal checkpoint collapse</div>
+          <div class="conflict-body">TP53 and RB1 are treated as clonal, high-VAF tumor suppressor losses. ARBITER reads this as a mitotic catastrophe vulnerability rather than a clean EGFR-only profile.</div>
+          <div class="conflict-status pass"><span class="dot"></span>Elevated</div>
+        </div>
+        <div class="conflict-card">
+          <div class="conflict-kicker">Downgraded Axis</div>
+          <div class="conflict-title">EGFR-only guideline assumption</div>
+          <div class="conflict-body">NCCN guidelines prioritize osimertinib for EGFR L858R. ARBITER downranks it here because the full profile contains subclonal KRAS G12D and MAPK1 amplification.</div>
+          <div class="conflict-status"><span class="dot"></span>Divergent</div>
+        </div>
+        <div class="conflict-card">
+          <div class="conflict-kicker">Resistance Reservoir</div>
+          <div class="conflict-title">Pre-primed TKI escape</div>
+          <div class="conflict-body">Subclonal KRAS G12D and MAPK1 amplification create a MAPK escape frame before EGFR therapy is even considered.</div>
+          <div class="conflict-status"><span class="dot"></span>Flagged</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout rv rv3"><strong>This is the red-light product.</strong> Ranking reflects coherence against the specific mutation profile shown, including clonal tumor suppressor status. Results for different mutation profiles — including isolated EGFR L858R without clonal TP53/RB1 loss — will differ. Clinician review advised.</div>
+</section>
+
 <section class="center" id="discovery" style="background:linear-gradient(to bottom,transparent,rgba(168,85,247,0.02));">
   <span class="eyebrow rv">Pathway Discovery</span>
   <h2 class="k k-sm rv rv1">Not just validation.<br>Discovery.</h2>
@@ -486,15 +565,14 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
       </div>
       <p>Deterministic validation infrastructure for AI-driven precision medicine. San Diego, CA.</p>
     </div>
-    <div class="footer-col"><h4>Platform</h4><a href="#validation">Validation</a><a href="#resolution">Clinical Resolution</a><a href="#discovery">Discovery</a></div>
+    <div class="footer-col"><h4>Platform</h4><a href="#validation">Validation</a><a href="#resolution">Clinical Resolution</a><a href="#nsclc">NSCLC Divergence</a><a href="#discovery">Discovery</a></div>
     <div class="footer-col"><h4>Company</h4><a href="#team">Team</a><a href="#partner">Partner With Us</a></div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>Joel Trout II, Founder & CEO</p>
-      <a href="mailto:joel@actualgeneralintelligence.com">joel@actualgeneralintelligence.com</a>
-    </div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:joel@actualgeneralintelligence.com">joel@actualgeneralintelligence.com</a></div>
   </div>
-  <div class="footer-bottom"><p>© 2026 ARBITER. All rights reserved.</p><p>Deterministic systems. Defensible outcomes.</p></div>
+  <div class="footer-bottom">
+  <p>© 2026 ARBITER</p>
+  <p>Deterministic systems · Defensible outcomes</p>
+</div>
 </div>
 
 <script>
