@@ -219,15 +219,23 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
 
 .research-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); width:100%; max-width:1000px; margin-top:36px; }
 .res-card { background:var(--bg1); padding:28px 22px; }
-.res-icon { font-size:22px; margin-bottom:12px; }
+.res-icon { width:34px; height:34px; margin:0 auto 16px; position:relative; }
+.res-icon::before, .res-icon::after { content:""; position:absolute; inset:0; border:1px solid rgba(192,132,252,.55); border-radius:999px; }
+.res-icon::after { transform:rotate(90deg) scaleX(.48); }
+.res-card:nth-child(2) .res-icon::before { border-radius:42% 58% 45% 55%; }
+.res-card:nth-child(2) .res-icon::after { border-radius:55% 45% 58% 42%; transform:rotate(45deg) scale(.74); }
+.res-card:nth-child(3) .res-icon::before { border-radius:4px; transform:rotate(45deg) scale(.72); }
+.res-card:nth-child(3) .res-icon::after { border-radius:4px; transform:rotate(-45deg) scale(.72); }
+.res-card:nth-child(4) .res-icon::before { border-radius:2px; transform:scaleY(.72); }
+.res-card:nth-child(4) .res-icon::after { border-radius:2px; transform:rotate(90deg) scaleY(.72); }
 .res-title { font-size:15px; font-weight:600; color:#fff; margin-bottom:6px; }
 .res-desc { font-size:13px; color:var(--muted); line-height:1.5; }
-.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); width:100%; max-width:800px; margin-top:36px; }
-.team-card { background:var(--bg1); padding:36px 28px; text-align:center; }
-.team-avatar { width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--accent-dark),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; color:#fff; margin:0 auto 16px; }
-.team-name { font-size:16px; font-weight:600; color:#fff; margin-bottom:4px; }
-.team-role { font-family:var(--mono); font-size:11px; color:var(--accent-light); margin-bottom:4px; }
-.team-area { font-family:var(--mono); font-size:10px; color:var(--dim); }
+.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); width:100%; max-width:860px; margin-top:36px; }
+.team-card { background:rgba(10,10,10,.92); padding:34px 28px; text-align:left; }
+.team-avatar { display:none; }
+.team-name { font-size:18px; line-height:1.25; font-weight:600; color:#fff; margin-bottom:10px; letter-spacing:-.02em; }
+.team-role { font-family:var(--mono); font-size:11px; color:var(--accent-light); margin-bottom:8px; letter-spacing:.12em; text-transform:uppercase; }
+.team-area { font-family:var(--mono); font-size:11px; color:var(--dim); line-height:1.5; }
 .partner { text-align:center; padding:100px 9vw; background:linear-gradient(to bottom,transparent,rgba(168,85,247,0.02)); }
 .partner h2 { font-size:clamp(32px, 4vw, 48px); font-weight:300; letter-spacing:-.02em; margin-bottom:12px; color:#fff; }
 .partner p { font-size:17px; color:var(--muted); margin-bottom:32px; }
@@ -414,7 +422,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
     </div>
   </div>
 
-  <div class="callout rv rv3"><strong>The system does not just generate answers.</strong> It removes unsupported recommendations, preserves caveats, and resolves disagreement into an auditable clinical ranking.</div>
+  <div class="callout rv rv3"><strong>The system does not predict. It computes.</div>
 </section>
 
 <section class="center" id="discovery" style="background:linear-gradient(to bottom,transparent,rgba(168,85,247,0.02));">
@@ -443,10 +451,10 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   <h2 class="k k-sm rv rv1">Clinical coherence scoring<br>across domains.</h2>
   <p class="body-text rv rv2">ARBITER applies deterministic validation across oncology, immunology, neurological disease, and computational biology.</p>
   <div class="research-grid rv rv2">
-    <div class="res-card"><div class="res-icon">🧬</div><div class="res-title">Oncology</div><div class="res-desc">GBM, NSCLC, TNBC therapeutic validation</div></div>
-    <div class="res-card"><div class="res-icon">🧠</div><div class="res-title">Neurological</div><div class="res-desc">Brain cancer research and treatment context</div></div>
-    <div class="res-card"><div class="res-icon">🛡️</div><div class="res-title">Immunology</div><div class="res-desc">Immunotherapy approaches and tumor immune context</div></div>
-    <div class="res-card"><div class="res-icon">🔬</div><div class="res-title">Computational</div><div class="res-desc">AI-driven drug discovery and validation</div></div>
+    <div class="res-card"><div class="res-icon"></div><div class="res-title">Oncology</div><div class="res-desc">GBM, NSCLC, TNBC therapeutic validation</div></div>
+    <div class="res-card"><div class="res-icon"></div><div class="res-title">Neurological</div><div class="res-desc">Brain cancer research and treatment context</div></div>
+    <div class="res-card"><div class="res-icon"></div><div class="res-title">Immunology</div><div class="res-desc">Immunotherapy approaches and tumor immune context</div></div>
+    <div class="res-card"><div class="res-icon"></div><div class="res-title">Computational</div><div class="res-desc">AI-driven drug discovery and validation</div></div>
   </div>
 </section>
 
@@ -455,9 +463,9 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
   <h2 class="k k-sm rv rv1">Research-driven<br>team.</h2>
   <p class="body-text rv rv2">PhDs, MDs, and AI specialists working at the intersection of computational biology and precision medicine.</p>
   <div class="team-grid rv rv2">
-    <div class="team-card"><div class="team-avatar">SK</div><div class="team-name">Santosh Kesari, MD, PhD</div><div class="team-role">Advisor</div><div class="team-area">Neuro-Oncology</div></div>
-    <div class="team-card"><div class="team-avatar">AM</div><div class="team-name">Alexandre Matov, Ph.D.</div><div class="team-role">Advisor</div><div class="team-area">Computational Biology</div></div>
-    <div class="team-card"><div class="team-avatar">BM</div><div class="team-name">Boris Minev, M.D.</div><div class="team-role">Advisor</div><div class="team-area">Precision Medicine</div></div>
+    <div class="team-card"><div class="team-name">Santosh Kesari, MD, PhD</div><div class="team-role">Advisor</div><div class="team-area">Neuro-Oncology</div></div>
+    <div class="team-card"><div class="team-name">Alexandre Matov, Ph.D.</div><div class="team-role">Advisor</div><div class="team-area">Computational Biology</div></div>
+    <div class="team-card"><div class="team-name">Boris Minev, M.D.</div><div class="team-role">Advisor</div><div class="team-area">Precision Medicine</div></div>
   </div>
 </section>
 
@@ -482,7 +490,7 @@ section.center { display:flex; flex-direction:column; align-items:center; text-a
     <div class="footer-col"><h4>Company</h4><a href="#team">Team</a><a href="#partner">Partner With Us</a></div>
     <div class="footer-col"><h4>Contact</h4><a href="mailto:joel@actualgeneralintelligence.com">joel@actualgeneralintelligence.com</a></div>
   </div>
-  <div class="footer-bottom"><p>© 2025 ARBITER. All rights reserved.</p><p>Deterministic systems. Trusted outcomes.</p></div>
+  <div class="footer-bottom"><p>© 2025 ARBITER. All rights reserved.</p><p>Deterministic systems. Defensible outcomes.</p></div>
 </div>
 
 <script>
