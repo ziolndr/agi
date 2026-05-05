@@ -41,6 +41,8 @@
       font-family: var(--mono);
       -webkit-font-smoothing: antialiased;
       text-rendering: geometricPrecision;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -48,6 +50,9 @@
 
     .page {
       min-height: 100vh;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
       background:
         radial-gradient(circle at 82% 8%, rgba(196, 42, 32, .36), transparent 28%),
         linear-gradient(90deg, rgba(9,9,8,.055) 1px, transparent 1px),
@@ -512,6 +517,8 @@
       min-height: 310px;
       padding: 42px clamp(18px, 4vw, 52px);
       border-top: 5px solid var(--red);
+      overflow: hidden;
+      width: 100%;
     }
 
     .footer-mast {
@@ -530,6 +537,7 @@
       text-transform: uppercase;
       font-weight: 900;
       white-space: nowrap;
+      max-width: 100%;
     }
 
     .star {
@@ -562,18 +570,163 @@
     }
 
     @media (max-width: 700px) {
-      .topline { height: auto; grid-template-columns: 1fr; gap: 10px; padding: 14px 18px; }
+      .topline {
+        height: auto;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 14px 18px;
+      }
+
       .topline nav { display: none; }
-      .brand { font-size: 60px; }
-      h1 { font-size: 64px; }
+
+      .masthead,
+      .hero,
+      .image-gallery,
+      .article-shell,
+      .applications,
+      .cta,
+      .footer {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      .masthead {
+        padding: 28px 18px 18px;
+      }
+
+      .brand {
+        font-size: clamp(44px, 16vw, 64px);
+        line-height: .82;
+        letter-spacing: -.055em;
+        overflow-wrap: anywhere;
+      }
+
+      .issue-box {
+        padding-left: 14px;
+      }
+
+      .hero {
+        padding: 30px 18px 42px;
+        gap: 24px;
+      }
+
+      h1 {
+        font-size: clamp(58px, 18vw, 76px);
+        line-height: .8;
+        letter-spacing: -.07em;
+        max-width: 100%;
+      }
+
+      .dek {
+        font-size: 18px;
+        max-width: 100%;
+      }
+
       .proof-strip { grid-template-columns: 1fr; }
       .proof-cell { border-right: 0; border-bottom: 1px solid rgba(9,9,8,.34); }
+      .proof-cell:last-child { border-bottom: 0; }
+
+      .actions,
+      .cta > div {
+        width: 100%;
+      }
+
+      .btn,
+      .button {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .hero-image,
+      .hero-image img {
+        min-height: 0;
+      }
+
+      .hero-image img {
+        aspect-ratio: 1 / 1.08;
+        object-fit: cover;
+      }
+
+      .ticker {
+        font-size: 30px;
+      }
+
       .caption { grid-template-columns: 1fr; }
-      .apps { grid-template-columns: 1fr; }
-      .cta { grid-template-columns: 1fr; }
-      .legal { display: grid; }
+      .figure img { aspect-ratio: 1 / 1.08; }
+      .figure.wide img { aspect-ratio: 1 / 1.08; }
+
+      .article-shell {
+        padding: 54px 18px;
+      }
+
+      .rail {
+        font-size: 10px;
+        gap: 12px;
+      }
+
       article p { font-size: 19px; }
-      pre { font-size: 12px; padding: 16px; }
+      article h2 { font-size: 46px; }
+      .pull { font-size: 40px; }
+
+      pre {
+        font-size: 12px;
+        padding: 16px;
+        max-width: 100%;
+      }
+
+      .compare-grid { grid-template-columns: 1fr; }
+      .score-row { grid-template-columns: 52px 1fr; }
+
+      .applications {
+        padding: 58px 18px;
+      }
+
+      .applications h2 {
+        font-size: clamp(48px, 16vw, 72px);
+        line-height: .82;
+        max-width: 100%;
+      }
+
+      .apps { grid-template-columns: 1fr; }
+      .app { min-height: 190px; }
+
+      .cta {
+        grid-template-columns: 1fr;
+        padding: 58px 18px;
+      }
+
+      .cta h2 {
+        font-size: clamp(50px, 17vw, 78px);
+        max-width: 100%;
+      }
+
+      .cta > div {
+        justify-content: stretch !important;
+      }
+
+      .footer {
+        padding: 34px 18px;
+      }
+
+      .footer-mast {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .footer-word {
+        font-size: clamp(50px, 17vw, 78px);
+        line-height: .84;
+        letter-spacing: -.06em;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .legal {
+        display: grid;
+        gap: 14px;
+      }
     }
   </style>
 </head>
